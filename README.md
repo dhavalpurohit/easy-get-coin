@@ -1,1 +1,1 @@
-# easy-get-coin
+# Easy-Get-Coin
