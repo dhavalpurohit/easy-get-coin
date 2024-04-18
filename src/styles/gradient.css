@@ -1,0 +1,22 @@
+* {
+  --default-gradient: linear-gradient(180deg, #000000 0%, #31105c 100%);
+  --pink-to-blue-gradient: linear-gradient(90deg, #D388FE 0%, #9651F5 50.22%, #4BB0FD 100%);
+  --dark-pink-to-blue: linear-gradient(90deg, #7A21BF 0%, #441DAB 49.5%, #5C60E7 100%);
+  --mountbatten-pink-to-purple: linear-gradient(180deg, #A2829E 0%, #6462E6 50%, #401B8E 100%);
+}
+
+.default-gradient {
+  background: var(--default-gradient);
+}
+
+.pink-to-blue-gradient {
+  background: var(--pink-to-blue-gradient);
+}
+
+.dark-pink-to-blue {
+  background: var(--dark-pink-to-blue);
+}
+
+.mountbatten-pink-to-purple {
+  background: var(--mountbatten-pink-to-purple);
+}
