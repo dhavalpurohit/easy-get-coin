@@ -8,9 +8,16 @@ export default {
         darkGray: 'rgba(250, 226, 255, 0.1)',
         veronica: '#9036EF',
         jet: '#2E2E2E',
+        darkPurple: '#3B2545',
+        platinumGray: '#DADADA',
+        fandango: '#A12F80',
+        veronicaLight: '#9334FE',
+        periwinkle: '#D6C5F1',
+        electricPurple: '#BD34FE',
       },
       boxShadow: {
         'default': '12px 0px 19.8px rgba(0, 0, 0, 0.6)',
+        "lightBlack": '-1px 4px 14.1px rgba(0, 0, 0, 0.5)',
       },
       fontSize: {
         '35': '2.188rem'
@@ -25,4 +32,3 @@ export default {
   },
   plugins: []
 }
-
