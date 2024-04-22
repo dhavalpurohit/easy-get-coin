@@ -5,7 +5,8 @@
   --mountbatten-pink-to-purple: linear-gradient(180deg, #A2829E 0%, #6462E6 50%, #401B8E 100%);
   --pink-to-orange: linear-gradient(90deg, #FD9FD4 0%, #FFC155 48.5%, #FF921B 100%);
   --purple-to-pink: linear-gradient(90deg, #8714FD 0%, #921AD1 42.92%, #9235C0 100%);
-  --light-pink-to-dark-pink: linear-gradient(144.36deg, #C36AFD 15.21%, #B33DF7 49.57%, #AA1BEB 83.94%)
+  --light-pink-to-dark-pink: linear-gradient(144.36deg, #C36AFD 15.21%, #B33DF7 49.57%, #AA1BEB 83.94%);
+  --violet-to-french-violet: linear-gradient(90deg, #E683FE 0.14%, #8212B8 100.8%);
 }
 
 .default-gradient {
@@ -34,4 +35,8 @@
 
 .light-pink-to-dark-pink {
   background: var(--light-pink-to-dark-pink);
+}
+
+.violet-to-french-violet{
+  background: var(--violet-to-french-violet);
 }

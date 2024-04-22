@@ -14,6 +14,7 @@ export default {
         veronicaLight: '#9334FE',
         periwinkle: '#D6C5F1',
         electricPurple: '#BD34FE',
+        mauve: '#E8B8FF',
       },
       boxShadow: {
         'default': '12px 0px 19.8px rgba(0, 0, 0, 0.6)',

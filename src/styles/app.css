@@ -1,3 +1,4 @@
+@import 'animate.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
 @import './gradient.css';
 @tailwind base;
@@ -6,4 +7,9 @@
 
 * {
     font-family: "Inter", sans-serif;
+}
+
+.btn_hover:hover {
+    transition: all .5s ease;
+    background: linear-gradient(90deg, #D388FE 0%, #9651F5 50.22%, #4BB0FD 100%) border-box;
 }
