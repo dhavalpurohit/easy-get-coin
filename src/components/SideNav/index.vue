@@ -5,7 +5,7 @@ import TotalAssets from '../Profile/TotalAssets.vue'
 import Close from '@/components/icons/Close.vue'
 
 defineProps<{
-    childFunction: Function,
+    childFunction: (payload: MouseEvent) => void,
     isOpen: Boolean
 }>();
 

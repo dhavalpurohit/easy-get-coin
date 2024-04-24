@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { RouterView } from 'vue-router'
+import { ref, watch } from 'vue';
+import { RouterView, useRoute } from 'vue-router'
 import SideNav from '@/components/SideNav/index.vue';
 import Footer from '@/components/common/Footer/index.vue'
 import MenuIcon from '@/assets/images/menu-icon.png';
@@ -8,9 +8,14 @@ import TopNav from '@/components/common/TopNav.vue';
 import CatBg from '@/assets/images/cat_bg.png'
 
 const isOpen = ref(false);
+const currentPath = ref<string>(useRoute().path);
 const parentFunction = () => {
     isOpen.value = !isOpen.value
 };
+
+watch(useRoute(), (to) => {
+    currentPath.value = to.path;
+});
 </script>
 
 <template>

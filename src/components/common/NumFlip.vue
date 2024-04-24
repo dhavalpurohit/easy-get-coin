@@ -72,7 +72,7 @@ const setActive = (index: any) => {
                 <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ ones }}
                 </div>
             </div>
-            <spa class="mx-1">.</spa>
+            <span class="mx-1">.</span>
             <div class="mountbatten-pink-to-purple rounded-lg p-1.5 mr-6 overflow-hidden min-w-[64px] text-center"
                 ref="tensNext">
                 <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextTens }}

@@ -15,7 +15,7 @@ const toggleDropdown = () => {
     isOpen.value = !isOpen.value;
 };
 
-const selectWalletOption = (option) => {
+const selectWalletOption = (option: any) => {
     selectedWalletOption.value = option;
     isOpen.value = false;
 };
