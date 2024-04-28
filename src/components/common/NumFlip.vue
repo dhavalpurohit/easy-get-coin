@@ -1,5 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue';
+import Vue3Odometer from 'vue3-odometer'
+import 'odometer/themes/odometer-theme-default.css'
 import Plush from '@/components/icons/Plus.vue';
 import Minus from '@/components/icons/Minus.vue';
 import FiveDice from '@/assets/images/five_dice.png'
@@ -38,11 +40,18 @@ const generateRandomNumber = () => {
     return Math.floor(Math.random() * 100); // Generate a random number between 0 and 99
 };
 
+const update = () => {
+    tens.value = Math.floor(Math.random() * 9)
+    ones.value = Math.floor(Math.random() * 9)
+    nextTens.value = Math.floor(Math.random() * 9)
+    nextOnes.value = Math.floor(Math.random() * 9)
+}
+
 const updateNumbers = () => {
     isFlipping.value = true;
     setTimeout(() => {
         count.value = generateRandomNumber();
-        tens.value = Math.floor(count.value / 10);
+        tens.value = Math.floor(Math.random() * 99);
         ones.value = count.value % 10;
         nextTens.value = Math.floor(count.value / 10);
         nextOnes.value = count.value % 10;
@@ -62,26 +71,30 @@ const setActive = (index: any) => {
         <!-- count number content -->
         <div v-if="isNum"
             class="scroll-container flex items-center w-fit mx-auto rounded-30 py-[15px] px-5 text-white text-[80px] leading-none dark-pink-to-blue">
-            <div class="mountbatten-pink-to-purple rounded-lg p-1.5 mr-6 overflow-hidden min-w-[64px] text-center"
+            <div class="mountbatten-pink-to-purple rounded-lg mr-6 overflow-hidden min-w-[64px] text-center max-h-[92px]"
                 ref="tensCurrent">
-                <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ tens }}
-                </div>
+                <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ tens }}
+                </div> -->
+                <Vue3Odometer :value="tens" format="d" class="animate__animated animate__fadeInUp" />
             </div>
-            <div class="mountbatten-pink-to-purple rounded-lg p-1.5 overflow-hidden min-w-[64px]
-                        text-center" ref="onesCurrent">
-                <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ ones }}
-                </div>
+            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-[64px]
+                        text-center max-h-[92px]" ref="onesCurrent">
+                <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ ones }}
+                </div> -->
+                <Vue3Odometer :value="ones" format="d" class="animate__animated animate__fadeInUp" />
             </div>
             <span class="mx-1">.</span>
-            <div class="mountbatten-pink-to-purple rounded-lg p-1.5 mr-6 overflow-hidden min-w-[64px] text-center"
+            <div class="mountbatten-pink-to-purple rounded-lg mr-6 overflow-hidden min-w-[64px] text-center max-h-[92px]"
                 ref="tensNext">
-                <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextTens }}
-                </div>
+                <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextTens }}
+                </div> -->
+                <Vue3Odometer :value="nextTens" format="d" class="animate__animated animate__fadeInUp" />
             </div>
-            <div class="mountbatten-pink-to-purple rounded-lg p-1.5 overflow-hidden min-w-[64px] text-center"
+            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-[64px] text-center max-h-[92px]"
                 ref="onesNext">
-                <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextOnes }}
-                </div>
+                <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextOnes }}
+                </div> -->
+                <Vue3Odometer :value="nextOnes" format="d" class="animate__animated animate__fadeInUp" />
             </div>
         </div>
 
@@ -104,7 +117,7 @@ const setActive = (index: any) => {
             </div>
         </div>
 
-        <HighLow v-if="obj.isFiveDice" />
+        <HighLow v-if="obj.isFiveDice && !isNum" />
 
         <div v-if="!obj.isThreeDice" class="grid grid-cols-8 gap-3 bg-black px-3.5 py-[22px] rounded-30 mb-[98px]">
             <Buttons v-for=" i  in  16 " :key="i" :class="{ 'violet-to-french-violet': isMultiple === i }"
@@ -115,14 +128,14 @@ const setActive = (index: any) => {
             </Buttons>
         </div>
 
-        <AnyTripleVue />
+        <AnyTripleVue v-if="obj.isFiveDice && !isNum" />
         <slot name="underbutton" />
     </div>
 
     <slot name="progressbar" />
 
     <!-- roll button -->
-    <button @click="updateNumbers"
+    <button @click="update"
         class="block uppercase text-white text-[45px] leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
 
     <!-- counter plus & minus -->
