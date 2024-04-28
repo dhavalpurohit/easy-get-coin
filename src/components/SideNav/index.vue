@@ -3,12 +3,14 @@ import { ref } from 'vue';
 import Profile from '../Profile/index.vue';
 import TotalAssets from '../Profile/TotalAssets.vue'
 import Close from '@/components/icons/Close.vue'
+import BetsCard from './BetsCard.vue';
 
 defineProps<{
     childFunction: (payload: MouseEvent) => void,
     isOpen: Boolean
 }>();
 
+const isAllBets = ref(false)
 const isWalletConnected = ref(true)
 const MenuList = [
     { title: 'HOME', to: '/home' },
@@ -32,9 +34,15 @@ const MenuList = [
         <Profile :isWalletConnected="isWalletConnected" />
         <!-- Total Assets content -->
         <TotalAssets class="mt-[42px]" v-if="isWalletConnected" />
+
+        <!-- all bets list -->
+        <div v-if="isAllBets">
+            <div class="my-16 text-center text-3xl font-medium">All BETS</div>
+            <BetsCard />
+        </div>
         <!-- Side menu content -->
         <transition name="slide">
-            <div v-if="isOpen" class="flex flex-col gap-7 mt-11">
+            <div v-if="isOpen && !isAllBets" class="flex flex-col gap-7 mt-11">
                 <!-- Your menu list go here -->
                 <router-link v-for="(list, index) in MenuList" :to=list.to :key="index"
                     class="text-platinum text-3xl font-medium p-2 rounded-30 text-center"
