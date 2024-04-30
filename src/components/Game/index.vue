@@ -20,11 +20,11 @@ const cube = ref<HTMLElement | null>(null);
 const selectedNum = ref(0);
 const rollDice = (): void => {
     if (cube.value) {
-        cube.value.style.animation = 'animate 1.4s linear';
+        cube.value.style.animation = 'animate 2s linear';
 
         const randomAngle = Math.floor(Math.random() * 6) + 1;
         cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-        cube.value.style.transition = '1s linear';
+        cube.value.style.transition = '2s linear';
 
         cube.value.addEventListener('animationend', () => {
             if (cube.value) {
@@ -41,42 +41,40 @@ const rollDice = (): void => {
     <div class="greetings">
         <div class="justify-center flex items-center h-screen">
             <div class="text-4xl text-white">
-                <div class="container">
+                <div class="containers">
                     <div class="cube" ref="cube" @click="rollDice">
                         <!-- Your cube faces here -->
-                        <div class="front" :class="{ '!bg-red-500': selectedNum == 1 }">
-                            1
+                        <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
+                            <span></span>
                         </div>
-                        <div class="back" :class="{ '!bg-green-500': selectedNum == 6 }">
+                        <div class="back" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
                             <!-- i use pre tag to align dots -->
-                            <pre class="firstPre">1    1    1</pre>
+                            <pre class="firstPre"><span></span>   <span></span>    <span></span></pre>
                             <br>
-                            <pre class="secondPre">1    1    1</pre>
+                            <pre class="secondPre"><span></span>   <span></span>    <span></span></pre>
                         </div>
-                        <div class="top" :class="{ '!bg-blue-500': selectedNum == 2 }">
-                            1
-                            1
+                        <div class="top" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
+                            <span></span>
+                            <span></span>
                         </div>
-                        <div class="left" :class="{ '!bg-gray-500': selectedNum == 3 }">
-                            1
-                            1
-                            1
+                        <div class=" left" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
+                            <span></span>
+                            <span></span>
+                            <span></span>
 
                         </div>
-                        <div class="right" :class="{ '!bg-pink-500': selectedNum == 5 }">
-                            1
-                            1
-                            1
-                            1
-                            1
-
+                        <div class="right" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
-                        <div class="bottom" :class="{ '!bg-yellow-500': selectedNum == 4 }">
-                            1
-                            1
-                            1
-                            1
-
+                        <div class="bottom" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
                         </div>
                     </div>
                 </div>
@@ -86,128 +84,139 @@ const rollDice = (): void => {
 </template>
 
 <style>
-.container {
+.containers {
     perspective: 1000px;
     perspective-origin: 50% 50%;
+    height: 50vh;
     /* font-family: 'fontawesome';
     height: 100vh; */
 }
 
-.container .cube {
-    position: relative;
-    left: 45%;
-    top: 40%;
-    height: 200px;
-    width: 200px;
+.containers .cube {
+    position: absolute;
+    inset: 0;
+    height: 65px;
+    width: 65px;
     transform-style: preserve-3d;
     cursor: pointer;
     transform: rotateX(135deg) rotateY(-217deg) rotateZ(-88deg);
 }
 
-.container .cube div {
+.containers .cube div {
     position: absolute;
     box-sizing: border-box;
-    padding: 10px;
+    padding: 1px;
     height: 100%;
     width: 100%;
-    border: 2px solid #eee;
+    border: 1px solid #24006D;
     color: #fff;
+    border-radius: 5px;
 }
 
-.container .cube div span {
-    font-size: 32px;
-    font-family: 'fontawesome';
+.containers .cube div span {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #24006D;
 }
 
-.container .cube .front {
-    background: #3B2545;
-    transform: translateZ(100px);
+.containers .cube .front {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
+    transform: translateZ(-34px);
+    left: 0;
 }
 
-.container .cube .back {
-    background: #3B2545;
+.containers .cube .back {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
     transform: translateZ(-100px) rotateY(180deg);
+    right: 4px;
 }
 
-.container .cube .right {
-    background: #3B2545;
+.containers .cube .right {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
     transform-origin: top right;
     transform: rotateY(-270deg) translateX(100px);
+    left: 4px;
 }
 
-.container .cube .left {
-    background: #3B2545;
+.containers .cube .left {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
     transform-origin: center left;
     transform: rotateY(270deg) translateX(-100px);
+    right: 4px;
 }
 
-.container .cube .top {
-    background: #3B2545;
+.containers .cube .top {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
     transform-origin: top center;
     transform: rotateX(-270deg) translateY(-100px);
+    bottom: 4px;
 }
 
-.container .cube .bottom {
-    background: #3B2545;
+.containers .cube .bottom {
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
     transform-origin: bottom center;
     transform: rotateX(270deg) translateY(100px);
+    top: 4px;
 }
 
 /*DOT ALIGNMENT */
-.container .cube .front span,
-.container .cube .left span:nth-child(1),
-.container .cube .right span:nth-child(1) {
+.containers .cube .front span,
+.containers .cube .left span:nth-child(1),
+.containers .cube .right span:nth-child(1) {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.container .cube .top span:nth-child(1),
-.container .cube .left span:nth-child(2),
-.container .cube .right span:nth-child(2),
-.container .cube .bottom span:nth-child(1) {
+.containers .cube .top span:nth-child(1),
+.containers .cube .left span:nth-child(2),
+.containers .cube .right span:nth-child(2),
+.containers .cube .bottom span:nth-child(1) {
     position: absolute;
     top: 35px;
     left: 35px;
 }
 
-.container .cube .top span:nth-child(2),
-.container .cube .left span:nth-child(3),
-.container .cube .right span:nth-child(3),
-.container .cube .bottom span:nth-child(2) {
+.containers .cube .top span:nth-child(2),
+.containers .cube .left span:nth-child(3),
+.containers .cube .right span:nth-child(3),
+.containers .cube .bottom span:nth-child(2) {
     position: absolute;
     bottom: 35px;
     right: 35px;
 }
 
-.container .cube .right span:nth-child(4),
-.container .cube .bottom span:nth-child(3) {
+.containers .cube .right span:nth-child(4),
+.containers .cube .bottom span:nth-child(3) {
     position: absolute;
     top: 35px;
     right: 35px;
 }
 
-.container .cube .right span:nth-child(5),
-.container .cube .bottom span:nth-child(4) {
+.containers .cube .right span:nth-child(5),
+.containers .cube .bottom span:nth-child(4) {
     position: absolute;
     bottom: 35px;
     left: 35px;
 }
 
-.container .cube .back pre {
-    font-size: 32px;
-    font-family: 'fontawesome';
+.containers .cube .back pre {
+    height: 12px;
+    width: 12px;
+    border-radius: 50%;
+    background: #24006D;
     margin: 0;
 }
 
-.container .cube .back .firstPre {
+.containers .cube .back .firstPre {
     position: absolute;
     top: 45px;
     left: 26px;
 }
 
-.container .cube .back .secondPre {
+.containers .cube .back .secondPre {
     position: absolute;
     bottom: 45px;
     right: 26px;
@@ -216,22 +225,22 @@ const rollDice = (): void => {
 @keyframes animate {
     25% {
         transform: rotateX(45deg) rotateY(65deg) rotateZ(35deg);
-        top: 0%;
+
     }
 
     50% {
         transform: rotateX(145deg) rotateY(165deg) rotateZ(135deg);
-        top: 30%;
+
     }
 
     75% {
         transform: rotateX(276deg) rotateY(256deg) rotateZ(246deg);
-        top: 45%;
+
     }
 
     100% {
         transform: rotateX(376deg) rotateY(356deg) rotateZ(346deg);
-        top: 60%;
+
     }
 }
 </style>
