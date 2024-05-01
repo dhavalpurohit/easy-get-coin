@@ -13,6 +13,7 @@ const angleArray: number[][] = [
 const cube = ref<HTMLElement | null>(null);
 const selectedNum = ref(0);
 const rollDice = (): void => {
+    console.log("parent call")
     if (cube.value) {
         cube.value.style.animation = 'animate 2s linear';
 
@@ -30,57 +31,56 @@ const rollDice = (): void => {
         });
     }
 }
+
+defineExpose({
+    rollDice
+})
 </script>
 <template>
-    <div class="greetings">
-        <div class="justify-center flex items-center h-screen">
-            <div class="text-4xl text-white">
-                <div class="containers">
-                    <div class="cube" ref="cube" @click="rollDice">
-                        <!-- Your cube faces here -->
-                        <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
-                            <span></span>
-                        </div>
-                        <div class="back" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
-                            <!-- i use pre tag to align dots -->
-                            <pre class="firstPre"><span></span>   <span></span>    <span></span></pre>
-                            <br>
-                            <pre class="secondPre"><span></span>   <span></span>    <span></span></pre>
-                        </div>
-                        <div class="top" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class=" left" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
-                            <span></span>
-                            <span></span>
-                            <span></span>
+    <div class="containers">
+        <div class="cube" ref="cube" @click="rollDice">
+            <!-- Your cube faces here -->
+            <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
+                <span></span>
+            </div>
+            <div class="back" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
+                <!-- i use pre tag to align dots -->
+                <pre class="firstPre"><span></span>   <span></span>    <span></span></pre>
+                <br>
+                <pre class="secondPre"><span></span>   <span></span>    <span></span></pre>
+            </div>
+            <div class="top" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
+                <span></span>
+                <span></span>
+            </div>
+            <div class=" left" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
+                <span></span>
+                <span></span>
+                <span></span>
 
-                        </div>
-                        <div class="right" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <div class="bottom" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="right" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="bottom" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
 </template>
-
-<!-- <style>
+<style>
 .containers {
     perspective: 1000px;
     perspective-origin: 50% 50%;
+    height: 300px;
+    width: 100%;
     /* font-family: 'fontawesome';
     height: 100vh; */
 }
@@ -88,6 +88,7 @@ const rollDice = (): void => {
 .containers .cube {
     position: absolute;
     inset: 0;
+    margin: auto;
     height: 65px;
     width: 65px;
     transform-style: preserve-3d;
@@ -236,4 +237,4 @@ const rollDice = (): void => {
         top: 60%;
     }
 }
-</style> -->
+</style>

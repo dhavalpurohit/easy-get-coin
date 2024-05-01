@@ -10,6 +10,7 @@ import ThreeDice from '@/assets/images/three_dice.png'
 import HighLow from '@/components/common/HighLow.vue';
 import Buttons from './Buttons.vue';
 import AnyTripleVue from '@/components/common/AnyTriple.vue';
+import Cube from './Cube.vue';
 
 defineProps<{
     isNum: Boolean;
@@ -62,7 +63,12 @@ const updateNumbers = () => {
 const setActive = (index: any) => {
     isMultiple.value = index;
 }
+const modalRef = ref();
 
+const cubeCall = () => {
+    console.log("modalRef", modalRef.value)
+    modalRef.value.rollDice()
+}
 </script>
 
 <template>
@@ -98,8 +104,10 @@ const setActive = (index: any) => {
             </div>
         </div>
 
+        <!-- animation cube -->
+        <Cube ref="modalRef" />
         <!-- count dice content -->
-        <div v-if="!isNum">
+        <div v-if="!isNum" class="hidden">
             <!-- <img :src="{ FiveDice: !isNum && obj.isFiveDice }" alt="dice"> -->
             <img :src="(obj.isFiveDice && !isNum) ? FiveDice : (obj.isTwoDice && !isNum) ? TwoDice : (obj.isThreeDice && !isNum) ? ThreeDice : FiveDice"
                 alt="dice">
@@ -135,7 +143,9 @@ const setActive = (index: any) => {
     <slot name="progressbar" />
 
     <!-- roll button -->
-    <button @click="update"
+    <button v-if="isNum" @click="update"
+        class="block uppercase text-white text-[45px] leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
+    <button v-else @click="cubeCall"
         class="block uppercase text-white text-[45px] leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
 
     <!-- counter plus & minus -->
