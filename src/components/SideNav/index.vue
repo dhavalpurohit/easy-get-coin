@@ -23,7 +23,7 @@ const MenuList = [
 </script>
 
 <template>
-    <div :class="{ 'slide-enter-active w-510': isOpen, 'slide-enter': !isOpen }"
+    <div :class="{ 'slide-enter-active w-full sm:w-510': isOpen, 'slide-enter': !isOpen }"
         class="fixed top-0 left-0 z-10 h-full default-gradient text-white flex flex-col transition-all px-7 py-14 shadow-default">
         <!-- Hamburger menu -->
         <button @click=childFunction class="absolute top-4 right-4">
@@ -37,7 +37,7 @@ const MenuList = [
 
         <!-- all bets list -->
         <div v-if="isAllBets">
-            <div class="my-16 text-center text-3xl font-medium">All BETS</div>
+            <div class="my-10 sm:my-16 text-center text-xl sm:text-3xl font-medium">All BETS</div>
             <BetsCard />
         </div>
         <!-- Side menu content -->
@@ -45,7 +45,7 @@ const MenuList = [
             <div v-if="isOpen && !isAllBets" class="flex flex-col gap-7 mt-11">
                 <!-- Your menu list go here -->
                 <router-link v-for="(list, index) in MenuList" :to=list.to :key="index"
-                    class="text-platinum text-3xl font-medium p-2 rounded-30 text-center"
+                    class="text-platinum text-lg sm:text-3xl font-medium p-2 rounded-30 text-center"
                     activeClass="pink-to-blue-gradient text-white">
                     {{ list.title }}</router-link>
             </div>

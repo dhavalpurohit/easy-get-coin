@@ -19,7 +19,7 @@ watch(useRoute(), (to) => {
 </script>
 
 <template>
-    <div class="flex w-full max-w-[757px] pt-[94px] bg-black">
+    <div class="flex w-full max-w-[320px] pt-[94px] bg-black">
         <SideNav :childFunction="parentFunction" :isOpen="isOpen" />
         <main class="relative w-full transition-all bg-cat">
             <div class="absolute z-[1] top-0 w-full flex items-center justify-between px-[45px]">

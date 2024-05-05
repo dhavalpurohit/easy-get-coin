@@ -7,8 +7,8 @@ import ThreeDots from '@/components/icons/ThreeDots.vue';
 </script>
 <template>
     <div :style="{ backgroundImage: `url(${TabCardBg})`, backgroundSize: '100% 100%' }"
-        class="w-full h-[132px] bg-no-repeat py-1.5 px-6 overflow-hidden mb-11">
-        <div class="flex items-center justify-between text-white text-xl w-full uppercase">
+        class="w-full h-[113px] sm:h-[132px] bg-no-repeat py-1.5 px-6 overflow-hidden mb-11">
+        <div class="flex items-center justify-between text-white text-sm sm:text-xl w-full uppercase">
             <div class="flex flex-col items-center font-semibold">
                 <span>Data</span>
                 <span class="normal-case">10 days ago</span>
@@ -21,7 +21,7 @@ import ThreeDots from '@/components/icons/ThreeDots.vue';
                 </span>
             </div>
         </div>
-        <div class="flex items-center text-white text-xl w-full mt-2.5">
+        <div class="flex items-center text-white text-sm sm:text-xl w-full mt-2.5">
             <img :src=Profile alt="profile" class="mr-9 w-[50px] h-[50px] rounded-full">
             <div class="flex flex-col">
                 <span class="font-semibold">Payout</span>
@@ -34,7 +34,7 @@ import ThreeDots from '@/components/icons/ThreeDots.vue';
                 <span class="font-semibold">Multiplier</span>
                 <span class="normal-case">x2.5</span>
             </div>
-            <ThreeDots class="h-8" />
+            <ThreeDots class="h-5 sm:h-8" />
         </div>
     </div>
 </template>
