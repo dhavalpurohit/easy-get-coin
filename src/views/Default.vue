@@ -19,12 +19,12 @@ watch(useRoute(), (to) => {
 </script>
 
 <template>
-    <div class="flex w-full max-w-[320px] pt-[94px] bg-black">
+    <div class="flex w-full max-w-[757px] pt-[50px] sm:pt-[94px] bg-black">
         <SideNav :childFunction="parentFunction" :isOpen="isOpen" />
         <main class="relative w-full transition-all bg-cat">
-            <div class="absolute z-[1] top-0 w-full flex items-center justify-between px-[45px]">
+            <div class="absolute z-[1] top-0 w-full flex items-center justify-between px-[25px] sm:px-[45px]">
                 <button @click="parentFunction">
-                    <img :src=MenuIcon alt="MenuIcon" class="w-18">
+                    <img :src=MenuIcon alt="MenuIcon" class="w-10 sm:w-18">
                 </button>
                 <TopNav />
             </div>

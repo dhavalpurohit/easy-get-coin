@@ -44,7 +44,7 @@ const MenuList = [
         <transition name="slide">
             <div v-if="isOpen && !isAllBets" class="flex flex-col gap-7 mt-11">
                 <!-- Your menu list go here -->
-                <router-link v-for="(list, index) in MenuList" :to=list.to :key="index"
+                <router-link v-for="(list, index) in MenuList" :to=list.to :key="index" @click=childFunction
                     class="text-platinum text-lg sm:text-3xl font-medium p-2 rounded-30 text-center"
                     activeClass="pink-to-blue-gradient text-white">
                     {{ list.title }}</router-link>
