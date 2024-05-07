@@ -51,7 +51,7 @@ watch(useRoute(), (to) => {
 .bgafter::after {
     content: '';
     width: 100%;
-    height: 100%;
+    height: 60%;
     background: linear-gradient(180deg, #000000 0%, #31105c 100%);
     top: 46%;
     left: 0;
