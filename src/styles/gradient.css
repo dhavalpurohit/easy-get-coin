@@ -10,6 +10,7 @@
 }
 
 .default-gradient {
+  background: #31105c;
   background: var(--default-gradient);
 }
 
