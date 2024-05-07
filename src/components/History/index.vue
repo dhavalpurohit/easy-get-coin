@@ -23,7 +23,7 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 </script>
 <template>
     <div class="bg-darkGray px-4 py-7 rounded-30">
-        <div class="text-platinum text-3xl font-medium">History</div>
+        <div class="text-platinum text-lg sm:text-3xl font-medium">History</div>
         <div class="pt-[30px]">
             <!-- History Number view content -->
             <ul v-if="isNum" class="flex justify-center text-white gap-3">

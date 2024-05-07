@@ -31,31 +31,35 @@ const rollDice = (): void => {
     selectedNum2.value = 0
 
     if (cube.value && cube2.value) {
-        cube.value.style.animation = 'animate 2s linear';
-        cube2.value.style.animation = 'animate 2s linear';
+        cube.value.style.animation = 'animate 1s linear';
+        cube2.value.style.animation = 'animate 1s linear';
 
         const randomAngle = Math.floor(Math.random() * 6) + 1;
         const randomAngle2 = Math.floor(Math.random() * 6) + 1;
 
         cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-        cube.value.style.transition = '2s linear';
+        cube.value.style.transition = '1s linear';
 
         cube2.value.style.transform = `rotateX(${angleArray2[randomAngle2][0]}deg) rotateY(${angleArray2[randomAngle2][1]}deg) rotateZ(${angleArray2[randomAngle2][2]}deg)`;
-        cube2.value.style.transition = '2s linear';
+        cube2.value.style.transition = '1s linear';
 
         cube.value.addEventListener('animationend', () => {
             if (cube.value) {
-                selectedNum.value = randomAngle
                 cube.value.style.animation = '';
             }
         });
 
         cube2.value.addEventListener('animationend', () => {
             if (cube2.value) {
-                selectedNum2.value = randomAngle2
                 cube2.value.style.animation = '';
             }
         });
+
+        setTimeout(() => {
+            selectedNum.value = randomAngle
+            selectedNum2.value = randomAngle2
+        }, 1000);
+
     }
 
 }
@@ -65,7 +69,7 @@ defineExpose({
 })
 </script>
 <template>
-    <div class="containers">
+    <div class="containers h-[200px] sm:h-[300px]">
         <div class="cube" ref="cube">
             <!-- Your cube faces here -->
             <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
@@ -147,24 +151,18 @@ defineExpose({
         </div>
     </div>
 </template>
-<style>
+<style scoped>
 .containers {
     perspective: 1000px;
     perspective-origin: 50% 50%;
-    height: 300px;
     width: 100%;
     /* font-family: 'fontawesome';
     height: 100vh; */
 }
 
 .containers .cube {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    height: 65px;
-    width: 65px;
+    @apply w-[65px] h-[65px] absolute inset-0 m-auto cursor-pointer;
     transform-style: preserve-3d;
-    cursor: pointer;
     transform: rotateX(135deg) rotateY(-217deg) rotateZ(-88deg);
 }
 
@@ -330,6 +328,81 @@ defineExpose({
     position: absolute;
     bottom: 45px;
     right: 26px;
+}
+
+/* media query */
+@media (max-width:640px) {
+    .containers .cube {
+        @apply w-[40px] h-[40px];
+    }
+
+    .containers .cube div span {
+        width: 6px !important;
+        height: 6px !important;
+    }
+
+    .containers .cube .front {
+        transform: translateZ(-60px);
+    }
+
+    .containers .cube .top span:nth-child(1),
+    .containers .cube .left span:nth-child(2),
+    .containers .cube .right span:nth-child(2),
+    .containers .cube .bottom span:nth-child(1) {
+        top: 6px;
+        left: 6px;
+    }
+
+    .containers .cube .top span:nth-child(2),
+    .containers .cube .left span:nth-child(3),
+    .containers .cube .right span:nth-child(3),
+    .containers .cube .bottom span:nth-child(2) {
+        top: 25px;
+        left: 25px;
+    }
+
+    .containers .cube .right span:nth-child(4),
+    .containers .cube .bottom span:nth-child(3) {
+        top: 25px;
+        right: 25px;
+    }
+
+    .containers .cube .right span:nth-child(5),
+    .containers .cube .bottom span:nth-child(4) {
+        bottom: 24px;
+        left: 24px;
+    }
+
+    .containers .cube .back span:nth-child(6) {
+        bottom: 8px;
+        left: 8px;
+    }
+
+    .containers .cube .back span:nth-child(3) {
+        bottom: 8px;
+        left: 19px;
+    }
+
+    .containers .cube .back span:nth-child(4) {
+        top: 12px;
+        left: 6px;
+    }
+
+    .containers .cube .back span:nth-child(5) {
+        bottom: 19px;
+        left: 17px;
+    }
+
+    .containers .cube .back span:nth-child(1) {
+        bottom: 18px;
+        left: 28px;
+    }
+
+    .containers .cube .back span:nth-child(2) {
+        bottom: 8px;
+        left: 29px;
+    }
+
 }
 
 @keyframes animate {

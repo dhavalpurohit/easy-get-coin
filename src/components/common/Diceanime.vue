@@ -13,57 +13,57 @@ defineProps<{
 const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
 </script>
 <template>
-    <div v-if="obj.isFiveDice" class="flex items-center justify-center gap-3">
-        <ul class="flex justify-center text-white gap-2">
+    <div v-if="obj.isFiveDice" class="flex items-center justify-center gap-1 sm:gap-3">
+        <ul class="flex justify-center text-white gap-1 sm:gap-2">
             <li v-for="dice in DiceArry" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
-        <ul class="flex justify-center text-white gap-2">
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
+        <ul class="flex justify-center text-white gap-1 sm:gap-2">
             <li v-for="index in 6" :key="index">
                 <img :src="DiceArry[5]" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
-        <ul class="flex justify-center text-white gap-2">
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
+        <ul class="flex justify-center text-white gap-1 sm:gap-2">
             <li v-for="dice in DiceArry" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
     </div>
-    <div v-if="obj.isTwoDice" class="flex items-center justify-center gap-6">
+    <div v-if="obj.isTwoDice" class="flex items-center justify-center gap-1 sm:gap-6">
         <ul class="flex justify-center text-white gap-2">
             <li v-for="dice in DiceArry.slice(0, 2)" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li v-for="dice in DiceArry.slice(0, 2)" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li v-for="dice in DiceArry.slice(0, 2)" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li v-for="dice in DiceArry.slice(0, 2)" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li v-for="dice in DiceArry.slice(0, 2)" :key="dice">
                 <img :src="dice" alt="dice-img" />
             </li>
         </ul>
     </div>
-    <div v-if="obj.isThreeDice" class="flex items-center justify-center gap-6">
+    <div v-if="obj.isThreeDice" class="flex items-center justify-center gap-1 sm:gap-6">
         <ul class="flex justify-center text-white gap-2">
             <li>
                 <img :src="DiceArry[0]" alt="dice-img" />
@@ -75,7 +75,7 @@ const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
                 <img :src="DiceArry[0]" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li>
                 <img :src="DiceArry[0]" alt="dice-img" />
@@ -87,7 +87,7 @@ const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
                 <img :src="DiceArry[0]" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li>
                 <img :src="DiceArry[0]" alt="dice-img" />
@@ -99,7 +99,7 @@ const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
                 <img :src="DiceArry[0]" alt="dice-img" />
             </li>
         </ul>
-        <div class="w-1.5 bg-veronica rounded-[3px] h-[21px]"></div>
+        <div class="w-1 sm:w-1.5 bg-veronica rounded-[3px] h-3 sm:h-[21px]"></div>
         <ul class="flex justify-center text-white gap-2">
             <li>
                 <img :src="DiceArry[0]" alt="dice-img" />

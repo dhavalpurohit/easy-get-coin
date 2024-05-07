@@ -73,7 +73,7 @@ const cubeCall = () => {
 
 <template>
     <!-- win or lost content -->
-    <div :class="{ 'pt-[78px]': isNum }">
+    <div :class="{ 'pt-[50px] sm:pt-[78px]': isNum }">
         <!-- count number content -->
         <div v-if="isNum"
             class="scroll-container flex items-center w-fit mx-auto rounded-30 py-[15px] px-5 text-white text-[80px] leading-none dark-pink-to-blue">
@@ -115,12 +115,13 @@ const cubeCall = () => {
         </div>
 
         <!-- total win & lost -->
-        <div :class="{ 'pt-0': !isNum }" class="flex items-center justify-between  rounded-30 py-[74px] px-5">
-            <div class="flex flex-col w-full items-center text-platinum text-4xl font-medium leading-[46px] ">
+        <div :class="{ 'pt-0': !isNum }" class="flex items-center justify-between  rounded-30 py-[50px] sm:py-[74px] px-5">
+            <div
+                class="flex flex-col w-full items-center text-platinum text-2xl sm:text-4xl font-medium sm:leading-[46px] ">
                 <span>WIN</span><span>100</span>
             </div>
-            <div class="border-[3px] border-veronica rounded-sm h-[52px]"></div>
-            <div class="flex flex-col w-full items-center text-platinum text-4xl font-medium leading-[46px]">
+            <div class="border-[3px] border-veronica rounded-sm h-8 sm:h-[52px]"></div>
+            <div class="flex flex-col w-full items-center text-platinum text-2xl sm:text-4xl font-medium sm:leading-[46px]">
                 <span>Lost</span><span>100</span>
             </div>
         </div>
@@ -144,20 +145,21 @@ const cubeCall = () => {
 
     <!-- roll button -->
     <button v-if="isNum" @click="update"
-        class="block uppercase text-white text-[45px] leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
+        class="block uppercase text-white text-2xl sm:text-[45px] sm:leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
     <button v-else @click="cubeCall"
-        class="block uppercase text-white text-[45px] leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
+        class="block uppercase text-white text-2xl sm:text-[45px] sm:leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">Roll</button>
 
     <!-- counter plus & minus -->
     <div class="pt-[50px] pb-6">
-        <div class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-2.5 py-2">
+        <div
+            class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-1 sm:px-2.5 py-1 sm:py-2">
             <button @click="decrement"
-                class="min-w-12 w-12 h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
+                class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Minus class="w-8" />
             </button>
-            <div class="text-white font-medium text-4xl">{{ counter }}</div>
+            <div class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
             <button @click="increment"
-                class="min-w-12 w-12 h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
+                class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Plush class="w-8" />
             </button>
         </div>
