@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import TabCard from './TabCard.vue';
-const currentTab = ref('Tab 3');
+const currentTab = ref('Tab 1');
 </script>
 <template>
     <div>

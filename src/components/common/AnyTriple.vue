@@ -9,7 +9,7 @@ const DiceArry = [Dice1, Dice2, Dice3]
 const currentBtn = ref('High')
 </script>
 <template>
-    <div class="flex items-center justify-between  mb-[80px]">
+    <div class="flex flex-col gap-5 sm:gap-0 sm:flex-row items-center justify-between  mb-[80px]">
         <div>
             <div class="grid grid-cols-3 gap-x-2.5 gap-y-4">
                 <img v-for="(item, index) in DiceArry" :key="index" :src=item alt="dice" class="w-[45px] h-[45px]">
@@ -36,20 +36,20 @@ const currentBtn = ref('High')
                 </div>
             </div>
         </div>
-        <div class="flex flex-col gap-6">
-            <Buttons @click="currentBtn = 'High'" :is-active="currentBtn === 'High'">
+        <div class="flex sm:flex-col gap-2 sm:gap-6">
+            <Buttons class="!px-4 sm:px-11" @click="currentBtn = 'High'" :is-active="currentBtn === 'High'">
                 High
             </Buttons>
-            <Buttons @click="currentBtn = 'Field'" :is-active="currentBtn === 'Field'">
+            <Buttons class="!px-4 sm:px-11" @click="currentBtn = 'Field'" :is-active="currentBtn === 'Field'">
                 Field
             </Buttons>
-            <Buttons @click="currentBtn = 'Low'" :is-active="currentBtn === 'Low'">
+            <Buttons class="!px-4 sm:px-11" @click="currentBtn = 'Low'" :is-active="currentBtn === 'Low'">
                 Low
             </Buttons>
         </div>
-        <div class="flex flex-col justify-center text-fandango pink-to-orange rounded-3xl px-6 h-[264px]">
-            <span class="text-[40px] leading-[normal] font-bold">ANY <br>TRIPLE</span>
-            <span class="text-2xl font-semibold leading-7 mt-1">x30.00</span>
+        <div class="flex flex-col justify-center text-fandango pink-to-orange rounded-3xl px-6 h-[180px] sm:h-[264px]">
+            <span class="text-3xl sm:text-[40px] sm:leading-[normal] font-bold">ANY <br>TRIPLE</span>
+            <span class="text-xl sm:text-2xl font-semibold sm:leading-7 mt-1">x30.00</span>
         </div>
     </div>
 </template>

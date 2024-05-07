@@ -5,7 +5,8 @@ import SideNav from '@/components/SideNav/index.vue';
 import Footer from '@/components/common/Footer/index.vue'
 import MenuIcon from '@/assets/images/menu-icon.png';
 import TopNav from '@/components/common/TopNav.vue';
-import CatBg from '@/assets/images/cat_bg.png'
+import CatBg from '@/assets/images/bg_cat 1.png';
+import CatGif from '@/assets/images/Bitepigspine.gif';
 
 const isOpen = ref(false);
 const currentPath = ref<string>(useRoute().path);
@@ -30,7 +31,11 @@ watch(useRoute(), (to) => {
             </div>
 
             <div class="relative">
-                <img :src=CatBg alt="cat-bg">
+                <div class="reative overflow-hidden">
+                    <img :src=CatBg alt="cat-bg">
+                    <img :src=CatGif alt="CatGif"
+                        class="absolute inset-0 mx-auto max-w-[220px] top-[65px] left-[30px] sm:max-w-full">
+                </div>
                 <div class="bgafter">
                     <div class="relative -mt-[46%] z-[1]">
                         <!-- This is where the matched component will be rendered -->

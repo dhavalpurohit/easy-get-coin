@@ -76,27 +76,27 @@ const cubeCall = () => {
     <div :class="{ 'pt-[50px] sm:pt-[78px]': isNum }">
         <!-- count number content -->
         <div v-if="isNum"
-            class="scroll-container flex items-center w-fit mx-auto rounded-30 py-[15px] px-5 text-white text-[80px] leading-none dark-pink-to-blue">
-            <div class="mountbatten-pink-to-purple rounded-lg mr-6 overflow-hidden min-w-[64px] text-center max-h-[92px]"
+            class="scroll-container flex items-center w-fit mx-auto rounded-xl sm:rounded-30 py-2 sm:py-[15px] px-2.5 sm:px-5 text-white text-[40px] sm:text-[80px] leading-none dark-pink-to-blue">
+            <div class="mountbatten-pink-to-purple rounded-lg mr-3 sm:mr-6 overflow-hidden min-w-10 sm:min-w-[64px] text-center max-h-[92px]"
                 ref="tensCurrent">
                 <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ tens }}
                 </div> -->
                 <Vue3Odometer :value="tens" format="d" class="animate__animated animate__fadeInUp" />
             </div>
-            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-[64px]
+            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-10 sm:min-w-[64px]
                         text-center max-h-[92px]" ref="onesCurrent">
                 <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ ones }}
                 </div> -->
                 <Vue3Odometer :value="ones" format="d" class="animate__animated animate__fadeInUp" />
             </div>
             <span class="mx-1">.</span>
-            <div class="mountbatten-pink-to-purple rounded-lg mr-6 overflow-hidden min-w-[64px] text-center max-h-[92px]"
+            <div class="mountbatten-pink-to-purple rounded-lg mr-3 sm:mr-6 overflow-hidden min-w-10 sm:min-w-[64px] text-center max-h-[92px]"
                 ref="tensNext">
                 <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextTens }}
                 </div> -->
                 <Vue3Odometer :value="nextTens" format="d" class="animate__animated animate__fadeInUp" />
             </div>
-            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-[64px] text-center max-h-[92px]"
+            <div class="mountbatten-pink-to-purple rounded-lg overflow-hidden min-w-10 sm:min-w-[64px] text-center max-h-[92px]"
                 ref="onesNext">
                 <!-- <div class="animate__animated animate__fadeInUp" :class="{ 'animate-flip-up': isFlipping }">{{ nextOnes }}
                 </div> -->
@@ -105,7 +105,7 @@ const cubeCall = () => {
         </div>
 
         <!-- animation cube -->
-        <Cube ref="modalRef" />
+        <Cube v-if="!isNum" ref="modalRef" />
         <!-- count dice content -->
         <div v-if="!isNum" class="hidden">
             <!-- <img :src="{ FiveDice: !isNum && obj.isFiveDice }" alt="dice"> -->
@@ -128,12 +128,13 @@ const cubeCall = () => {
 
         <HighLow v-if="obj.isFiveDice && !isNum" />
 
-        <div v-if="!obj.isThreeDice" class="grid grid-cols-8 gap-3 bg-black px-3.5 py-[22px] rounded-30 mb-[98px]">
+        <div v-if="!obj.isThreeDice"
+            class="flex items-center overflow-x-auto sm:grid grid-cols-8 gap-3 bg-black px-3.5 py-3 sm:py-[22px] rounded-xl sm:rounded-30 mb-[50px] sm:mb-[98px]">
             <Buttons v-for=" i  in  16 " :key="i" :class="{ 'violet-to-french-violet': isMultiple === i }"
                 @click="setActive(i)"
-                class="!py-3 !px-0 flex flex-col items-center justify-center max-w-[62px] rounded-[14px]">
-                <span class="text-4xl leading-[35px] mb-1">3</span>
-                <span class="text-2xl leading-6 font-medium normal-case">x180</span>
+                class="!py-2 sm:!py-3 !px-0 flex flex-col items-center justify-center min-w-[60px] max-w-[62px] rounded-xl sm:rounded-[14px]">
+                <span class="text-2xl sm:text-4xl sm:leading-[35px] sm:mb-1">3</span>
+                <span class="text-base sm:text-2xl sm:leading-6 font-medium normal-case">x180</span>
             </Buttons>
         </div>
 
@@ -155,12 +156,12 @@ const cubeCall = () => {
             class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-1 sm:px-2.5 py-1 sm:py-2">
             <button @click="decrement"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
-                <Minus class="w-8" />
+                <Minus class="w-4 sm:w-8" />
             </button>
             <div class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
             <button @click="increment"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
-                <Plush class="w-8" />
+                <Plush class="w-4 sm:w-8" />
             </button>
         </div>
     </div>

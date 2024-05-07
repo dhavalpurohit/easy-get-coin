@@ -5,8 +5,9 @@ import { ref } from 'vue'
 const currentBtn = ref('High');
 </script>
 <template>
-    <div class="flex items-center justify-center mb-[62px] gap-[42px]">
-        <ul class="flex flex-col gap-7 bg-black text-platinum px-[25px] py-[18px] rounded-[26px] text-[25px] font-bold">
+    <div class="flex items-center justify-center mb-[62px] gap-4 sm:gap-[42px]">
+        <ul
+            class="flex flex-col gap-2 sm:gap-7 bg-black text-platinum px-3 sm:px-[25px] py-2 sm:py-[18px] rounded-xl sm:rounded-[26px] text-xs sm:text-[25px] font-bold">
             <li class="flex items-center justify-between">
                 <span class="mr-9">FIVE OF A KIND</span>
                 <span>X15.00</span>

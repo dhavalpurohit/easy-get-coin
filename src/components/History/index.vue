@@ -16,7 +16,7 @@ const booleanList = reactive({
     isTwoDice: false,
     isThreeDice: true
 })
-const isNum = ref(false);
+const isNum = ref(true);
 
 const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 // const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
@@ -26,9 +26,9 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
         <div class="text-platinum text-lg sm:text-3xl font-medium">History</div>
         <div class="pt-[30px]">
             <!-- History Number view content -->
-            <ul v-if="isNum" class="flex justify-center text-white gap-3">
+            <ul v-if="isNum" class="flex justify-center text-white gap-2 sm:gap-3">
                 <li v-for="num in HistoryNum"
-                    class="flex items-center gap-3 text-3xl font-medium last:after:w-0 after:block after:w-[6px] after:bg-veronica after:h-full after:rounded"
+                    class="flex items-center gap-2 sm:gap-3 text-xs sm:text-3xl font-medium last:after:w-0 after:block sm:after:w-[6px] after:w-[2px] after:bg-veronica after:h-full after:rounded"
                     :key="num">{{
                         num }}</li>
             </ul>
@@ -39,16 +39,16 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
             <NumFlip :isNum="isNum" :obj="booleanList">
                 <template #underbutton v-if="isNum">
                     <!-- under x button -->
-                    <div class="flex items-center justify-center gap-[30px]">
+                    <div class="flex items-center justify-center gap-4 sm:gap-[30px]">
                         <button
-                            class="flex flex-col items-center text-platinumGray rounded-3xl bg-darkPurple py-2 px-9 text-center">
-                            <span class="text-3xl leading-[38px] font-bold">UNDER 10.98</span>
-                            <span class="text-2xl font-medium">x30.00</span>
+                            class="flex flex-col items-center text-platinumGray rounded-xl sm:rounded-3xl bg-darkPurple py-1 sm:py-2 px-3 sm:px-9 text-center">
+                            <span class="text-lg sm:text-3xl sm:leading-[38px] font-bold">UNDER 10.98</span>
+                            <span class="text-sm sm:text-2xl font-medium">x30.00</span>
                         </button>
                         <button
-                            class="flex flex-col items-center text-fandango rounded-3xl pink-to-orange py-2 px-9 text-center">
-                            <span class="text-3xl leading-[38px] font-bold">UNDER 10.98</span>
-                            <span class="text-2xl font-medium">x30.00</span>
+                            class="flex flex-col items-center text-fandango rounded-xl sm:rounded-3xl pink-to-orange py-1 sm:py-2 px-3 sm:px-9 text-center">
+                            <span class="text-lg sm:text-3xl sm:leading-[38px] font-bold">UNDER 10.98</span>
+                            <span class="text-sm sm:text-2xl font-medium">x30.00</span>
                         </button>
                     </div>
                 </template>
