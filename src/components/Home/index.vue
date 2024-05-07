@@ -7,7 +7,7 @@ import TabView from '@/components/common/Tab/TabView.vue';
 <template>
     <div class="relative px-5 sm:px-[45px]">
         <History />
-        <TabView class="pt-[76px] pb-[50px] sm:pb-[100px]" />
+        <TabView class="pt-[76px] pb-[100px]" />
     </div>
 
     <!-- <div class="relative">
