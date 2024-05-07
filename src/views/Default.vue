@@ -21,7 +21,7 @@ watch(useRoute(), (to) => {
 <template>
     <div class="flex w-full max-w-[757px] pt-[50px] sm:pt-[94px] bg-black">
         <SideNav :childFunction="parentFunction" :isOpen="isOpen" />
-        <main class="relative w-full transition-all bg-cat">
+        <main class="relative w-full transition-all bg-cat overflow-hidden">
             <div class="absolute z-[1] top-0 w-full flex items-center justify-between px-[25px] sm:px-[45px]">
                 <button @click="parentFunction">
                     <img :src=MenuIcon alt="MenuIcon" class="w-10 sm:w-18">
@@ -51,7 +51,7 @@ watch(useRoute(), (to) => {
 .bgafter::after {
     content: '';
     width: 100%;
-    height: -webkit-fill-available;
+    height: 100%;
     background: linear-gradient(180deg, #000000 0%, #31105c 100%);
     top: 46%;
     left: 0;
