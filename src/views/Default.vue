@@ -34,7 +34,7 @@ watch(useRoute(), (to) => {
                 <div class="reative overflow-hidden">
                     <img :src=CatBg alt="cat-bg">
                     <img :src=CatGif alt="CatGif"
-                        class="absolute inset-0 mx-auto max-w-[220px] top-[65px] left-[30px] sm:max-w-full">
+                        class="absolute inset-0 mx-auto max-w-[220px] top-[5%] sm:top-[65px] left-[30px] sm:max-w-full">
                 </div>
                 <div class="bgafter">
                     <div class="relative -mt-[46%] z-[1]">

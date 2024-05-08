@@ -28,7 +28,7 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
             <!-- History Number view content -->
             <ul v-if="isNum" class="flex justify-center text-white gap-2 sm:gap-3">
                 <li v-for="num in HistoryNum"
-                    class="flex items-center gap-2 sm:gap-3 text-xs sm:text-3xl font-medium last:after:w-0 after:block sm:after:w-[6px] after:w-[2px] after:bg-veronica after:h-full after:rounded"
+                    class="flex items-center gap-2 sm:gap-3 text-sm sm:text-3xl font-medium last:after:w-0 after:block sm:after:w-[6px] after:w-[2px] after:bg-veronica after:h-full after:rounded"
                     :key="num">{{
                         num }}</li>
             </ul>

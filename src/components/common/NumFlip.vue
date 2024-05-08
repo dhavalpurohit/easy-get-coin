@@ -22,20 +22,51 @@ const nextTens = ref(0);
 const nextOnes = ref(0);
 let count = ref(0);
 const isFlipping = ref(false);
-const counter = ref(1000);
+const counter = ref(50);
 const isMultiple = ref(null);
+const incrementInterval = ref<number | null>(null);
 
-const increment = () => {
-    if (counter.value < 1000) {
-        counter.value++;
+const increment = (isContinuous = true) => {
+    if (isContinuous) {
+        incrementInterval.value = setInterval(() => {
+            if (counter.value < 1000) {
+                counter.value++;
+            }
+        }, 200);
+    } else {
+        if (counter.value < 1000) {
+            counter.value++;
+        }
+    }
+
+};
+
+const stopIncrement = () => {
+    if (incrementInterval.value) {
+        clearInterval(incrementInterval.value);
+        incrementInterval.value = null;
+    }
+}
+const decrement = (isContinuous = true) => {
+    if (isContinuous) {
+        incrementInterval.value = setInterval(() => {
+            if (counter.value > 0) {
+                counter.value--;
+            }
+        }, 200);
+    } else {
+        if (counter.value > 0) {
+            counter.value--;
+        }
     }
 };
 
-const decrement = () => {
-    if (counter.value > 0) {
-        counter.value--;
+const stopDecrement = () => {
+    if (incrementInterval.value) {
+        clearInterval(incrementInterval.value);
+        incrementInterval.value = null;
     }
-};
+}
 
 const generateRandomNumber = () => {
     return Math.floor(Math.random() * 100); // Generate a random number between 0 and 99
@@ -154,12 +185,14 @@ const cubeCall = () => {
     <div class="pt-[50px] pb-6">
         <div
             class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-1 sm:px-2.5 py-1 sm:py-2">
-            <button @click="decrement"
+            <button @mousedown="decrement(true)" @mouseup="stopDecrement" @touchstart="decrement(true)"
+                @touchend="stopDecrement" @click="decrement(false)"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Minus class="w-4 sm:w-8" />
             </button>
             <div class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
-            <button @click="increment"
+            <button @mousedown="increment(true)" @mouseup="stopIncrement" @touchstart="increment(true)"
+                @touchend="stopIncrement" @click="increment(false)"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Plush class="w-4 sm:w-8" />
             </button>
