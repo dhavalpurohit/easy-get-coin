@@ -4,7 +4,7 @@ import SocialLinks from "./SocialLinks.vue";
 import Copyright from "./Copyright.vue"
 </script>
 <template>
-    <footer class="w-full p-5 sm:p-[35px] pt-0 bg-transparent">
+    <footer class="w-full p-5 sm:p-[35px] pt-0 bg-transparent md:bg-black">
         <CoinList />
         <SocialLinks class="py-[100px]" />
         <Copyright />

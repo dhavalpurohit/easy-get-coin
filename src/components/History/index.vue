@@ -22,8 +22,8 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 // const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
 </script>
 <template>
-    <div class="bg-darkGray px-4 py-7 rounded-30">
-        <div class="text-platinum text-lg sm:text-3xl font-medium">History</div>
+    <div class="bg-darkGray md:bg-transparent px-4 py-7 rounded-30">
+        <div class="text-platinum text-lg sm:text-3xl font-medium md:hidden">History</div>
         <div class="pt-[30px]">
             <!-- History Number view content -->
             <ul v-if="isNum" class="flex justify-center text-white gap-2 sm:gap-3">
