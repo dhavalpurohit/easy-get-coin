@@ -23,31 +23,38 @@ watch(useRoute(), (to) => {
 <template>
     <div class="parent flex w-full pt-[50px] sm:pt-[94px] max-md:bg-black">
         <SideNav :childFunction="parentFunction" :isOpen="isOpen" />
-        <main class="relative w-full max-w-[1200px] mx-auto transition-all bg-cat overflow-hidden">
-            <div class="absolute z-[1] top-0 w-full flex items-center justify-between px-[25px] sm:px-[45px]">
-                <button @click="parentFunction">
+        <main class="relative w-full  transition-all bg-cat overflow-hidden">
+            <div
+                class="absolute md:static z-[1] md:max-w-[1200px] mx-auto inset-x-0 top-0 w-full flex items-center justify-between md:justify-end px-[25px] sm:px-[45px] md:px-0">
+                <button @click="parentFunction" class="md:absolute md:left-[50px]">
                     <img :src=MenuIcon alt="MenuIcon" class="w-10 sm:w-18">
                 </button>
                 <TopNav />
             </div>
 
-            <div class="relative  md:pt-[150px]">
+            <div class="relative md:max-w-[1200px] md:mx-auto md:pt-[50px]">
                 <div class="sm:hidden reative overflow-hidden">
                     <img :src=CatBg alt="cat-bg" class="md:w-full">
                     <img :src=CatGif alt="CatGif"
                         class="absolute inset-0 mx-auto max-w-[220px] top-[5%] sm:top-[65px] left-[30px] sm:max-w-full">
                 </div>
-                <div class="hidden sm:block reative overflow-hidden">
+                <!-- <div
+                    class="hidden sm:block reative overflow-hidden webcatbg  md:pb-[375px] md:bg-russian_violet md:rounded-30">
+                    <img :src=WebCatBg alt="cat-bg" class="md:w-full">
+                </div> -->
+                <div
+                    class="hidden sm:block relative overflow-hidden md:pb-[200px] md:after:absolute md:after:bottom-0 md:after:w-full md:after:h-[374px] md:after:bg-russian_violet md:after:rounded-b-30">
                     <img :src=WebCatBg alt="cat-bg" class="md:w-full">
                 </div>
                 <div class="bgafter">
-                    <div class="relative -mt-[46%] md:-mt-[58%] z-[1]">
+                    <div class="relative -mt-[46%] md:-mt-[75%] z-[1]">
                         <!-- This is where the matched component will be rendered -->
                         <router-view></router-view>
-                        <Footer />
+                        <Footer class="md:hidden" />
                     </div>
                 </div>
             </div>
+            <Footer class="hidden md:block relative z-10" />
         </main>
     </div>
 </template>
@@ -76,6 +83,10 @@ watch(useRoute(), (to) => {
         background-image: url(../assets/images/webbg_transparent.png);
         background-repeat: no-repeat;
         background-size: 100% auto;
+    }
+
+    .bgafter::after {
+        background: transparent;
     }
 }
 </style>

@@ -3,7 +3,7 @@ import NumFlip from "../common/NumFlip.vue";
 import { ref, reactive } from "vue";
 import ProgressBar from "../common/ProgressBar.vue";
 import Diceanime from '@/components/common/Diceanime.vue';
-
+import WinLost from "../common/WinLost.vue";
 // import Dice1 from "../../assets/images/dice/dice1.png";
 // import Dice2 from "../../assets/images/dice/dice2.png";
 // import Dice3 from "../../assets/images/dice/dice3.png";
@@ -16,7 +16,7 @@ const booleanList = reactive({
     isTwoDice: false,
     isThreeDice: true
 })
-const isNum = ref(true);
+const isNum = ref(false);
 
 const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 // const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]
@@ -45,6 +45,7 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
                             <span class="text-lg sm:text-3xl sm:leading-[38px] font-bold">UNDER 10.98</span>
                             <span class="text-sm sm:text-2xl font-medium">x30.00</span>
                         </button>
+                        <WinLost class="hidden md:flex" />
                         <button
                             class="flex flex-col items-center text-fandango rounded-xl sm:rounded-3xl pink-to-orange py-1 sm:py-2 px-3 sm:px-9 text-center">
                             <span class="text-lg sm:text-3xl sm:leading-[38px] font-bold">UNDER 10.98</span>
@@ -54,8 +55,8 @@ const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
                 </template>
                 <template #progressbar v-if="isNum">
                     <!-- progressbar -->
-                    <div class="py-[74px]">
-                        <ProgressBar />
+                    <div class="py-[74px] md:pt-0">
+                        <ProgressBar class="md:max-w-[580px] md:mx-auto" />
                     </div>
                 </template>
             </NumFlip>

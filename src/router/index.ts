@@ -14,8 +14,8 @@ const router = createRouter({
       component: Default,
       children: [
         {
-          path: '/',
-          component: Home
+          path: '',
+          redirect: '/home'
         },
         {
           path: '/home',
@@ -48,12 +48,12 @@ const router = createRouter({
       component: Details,
       children: [
         {
-          path: '/verification',
+          path: 'verification',
           component: VerificationVue,
           name: 'Verification'
         },
         {
-          path: '/betdetails',
+          path: 'betdetails',
           component: BetDetailsVue,
           name: 'Bet Details'
         },
@@ -61,5 +61,4 @@ const router = createRouter({
     }
   ]
 })
-
 export default router

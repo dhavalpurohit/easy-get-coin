@@ -15,6 +15,7 @@ export default {
         periwinkle: '#D6C5F1',
         electricPurple: '#BD34FE',
         mauve: '#E8B8FF',
+        russian_violet: '#130635',
       },
       boxShadow: {
         'default': '12px 0px 19.8px rgba(0, 0, 0, 0.6)',

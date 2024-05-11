@@ -16,12 +16,12 @@ const toggleDropUp = () => {
 
 </script>
 <template>
-    <div class="relative default-gradient pt-[106px] px-[46px] pb-16">
-        <div class="flex items-center text-white mb-[98px]">
-            <BackArrow class="cursor-pointer" @click="router.push('/home');" />
-            <div class="text-5xl font-bold mx-auto">{{ router.currentRoute.value.name }}</div>
+    <div class="relative default-gradient pt-6 sm:pt-[106px] px-5 sm:px-[46px] sm:pb-16">
+        <div class="flex items-center text-white mb-[50px] sm:mb-[98px]">
+            <BackArrow class="cursor-pointer w-9 sm:w-auto" @click="router.push('/home');" />
+            <div class="text-3xl sm:text-5xl font-bold mx-auto">{{ router.currentRoute.value.name }}</div>
         </div>
-        <div class="mb-[112px]">
+        <div class="mb-11 sm:mb-[112px]">
             <router-view></router-view>
         </div>
         <transition name="fade">

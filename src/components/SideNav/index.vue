@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 import Profile from '../Profile/index.vue';
 import TotalAssets from '../Profile/TotalAssets.vue'
 import Close from '@/components/icons/Close.vue'
@@ -20,20 +21,26 @@ const MenuList = [
     { title: 'HELP CENTER', to: '/help-center' },
     { title: 'CONTACT US', to: '/contact-us' },
 ]
+
+const route = useRoute();
+
+const isDefaultRoute = (to: string) => {
+    return to === '/' || to === '' || route.path === to;
+};
 </script>
 
 <template>
-    <div :class="{ 'slide-enter-active w-full sm:w-510': isOpen, 'slide-enter': !isOpen }"
-        class="fixed top-0 left-0 z-10 h-full default-gradient text-white flex flex-col transition-all px-7 py-14 shadow-default">
+    <div :class="{ 'slide-enter-active w-full sm:w-510 md:w-[394px]': isOpen, 'slide-enter': !isOpen }"
+        class="fixed top-0 left-0 z-50 h-full default-gradient text-white flex flex-col transition-all px-7 py-14 shadow-default">
         <!-- Hamburger menu -->
         <button @click=childFunction class="absolute top-4 right-4">
             <Close />
         </button>
 
         <!-- Profile content -->
-        <Profile :isWalletConnected="isWalletConnected" />
+        <Profile :isWalletConnected="isWalletConnected" class="md:hidden" />
         <!-- Total Assets content -->
-        <TotalAssets class="mt-[42px]" v-if="isWalletConnected" />
+        <TotalAssets class="mt-[42px] md:hidden" v-if="isWalletConnected" />
 
         <!-- all bets list -->
         <div v-if="isAllBets">
@@ -46,7 +53,7 @@ const MenuList = [
                 <!-- Your menu list go here -->
                 <router-link v-for="(list, index) in MenuList" :to=list.to :key="index" @click=childFunction
                     class="text-platinum text-lg sm:text-3xl font-medium p-2 rounded-30 text-center"
-                    activeClass="pink-to-blue-gradient text-white">
+                    activeClass="pink-to-blue-gradient text-white" :exact="isDefaultRoute(list.to)">
                     {{ list.title }}</router-link>
             </div>
         </transition>
