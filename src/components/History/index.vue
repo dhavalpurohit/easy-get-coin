@@ -14,9 +14,9 @@ import WinLost from "../common/WinLost.vue";
 const booleanList = reactive({
     isFiveDice: false,
     isTwoDice: false,
-    isThreeDice: true
+    isThreeDice: false
 })
-const isNum = ref(false);
+const isNum = ref(true);
 
 const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 // const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]

@@ -106,13 +106,13 @@ const cubeCall = () => {
                 alt="dice">
         </div>
         <!-- total win & lost -->
-        <WinLost class="flex md:hidden" :class="{ 'pt-0': !isNum }" />
-        <HighLow v-if="obj.isFiveDice && !isNum" />
-        <div v-if="!obj.isThreeDice"
-            class="flex items-center overflow-x-auto sm:grid grid-cols-8 gap-3 bg-black px-3.5 py-3 sm:py-[22px] rounded-xl sm:rounded-30 mb-[50px] sm:mb-[98px]">
-            <Buttons v-for=" i  in  16 " :key="i" :class="{ 'violet-to-french-violet': isMultiple === i }"
+        <WinLost class="flex md:max-w-[300px] md:mx-auto md:py-10 md:hidden" :class="{ 'pt-0': !isNum }" />
+        <HighLow v-if="obj.isFiveDice && !isNum" class="hidden" />
+        <div v-if="obj.isTwoDice"
+            class="flex items-center overflow-x-auto sm:grid grid-cols-8 md:flex gap-3 bg-black px-3.5 py-3 sm:py-[22px] rounded-xl sm:rounded-30 mb-[50px] sm:mb-[98px] md:mb-5">
+            <Buttons v-for=" i  in  32 " :key="i" :class="{ 'violet-to-french-violet': isMultiple === i }"
                 @click="setActive(i)"
-                class="!py-2 sm:!py-3 !px-0 flex flex-col items-center justify-center min-w-[60px] max-w-[62px] rounded-xl sm:rounded-[14px]">
+                class="!py-2 sm:!py-3 !px-0 flex flex-col items-center justify-center min-w-[60px] max-w-[62px] rounded-xl sm:!rounded-[14px]">
                 <span class="text-2xl sm:text-4xl sm:leading-[35px] sm:mb-1">3</span>
                 <span class="text-base sm:text-2xl sm:leading-6 font-medium normal-case">x180</span>
             </Buttons>

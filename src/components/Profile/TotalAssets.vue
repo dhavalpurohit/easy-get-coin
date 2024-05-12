@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Assect from '@/assets/images/ assect.png';
+import Assect from '@/assets/images/assect.png';
 
 </script>
 <template>

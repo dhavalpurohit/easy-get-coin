@@ -69,7 +69,7 @@ defineExpose({
 })
 </script>
 <template>
-    <div class="containers h-[200px] sm:h-[300px]">
+    <div class="containers h-[200px] sm:h-[300px] md:h-[200px]">
         <div class="cube" ref="cube">
             <!-- Your cube faces here -->
             <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">

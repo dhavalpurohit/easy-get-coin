@@ -31,30 +31,6 @@ const decrement = () => {
         </div>
         <!-- count number content -->
         <RollNumber />
-        <!-- <div
-            class="group scroll-container flex items-center w-fit mx-auto rounded-30 py-[15px] px-5 text-white text-[80px] leading-none dark-pink-to-blue font-medium">
-            <div class="mountbatten-pink-to-purple rounded-lg p-0.5 mr-6 overflow-hidden min-w-[59px] text-center ease-in-out duration-300 group-hover:-translate-y-1"
-                ref="tensCurrent">
-                <div class="animate__animated animate__fadeInUp animate-flip-up">0
-                </div>
-            </div>
-            <div class="mountbatten-pink-to-purple rounded-lg p-0.5 overflow-hidden min-w-[59px]
-                        text-center  ease-in-out duration-[500ms] group-hover:-translate-y-1" ref="onesCurrent">
-                <div class="animate__animated animate__fadeInUp animate-flip-up">0
-                </div>
-            </div>
-            <span class="mx-1">.</span>
-            <div class="mountbatten-pink-to-purple rounded-lg p-0.5 mr-6 overflow-hidden min-w-[59px] text-center ease-in-out duration-[700ms] group-hover:-translate-y-1"
-                ref="tensNext">
-                <div class="animate__animated animate__fadeInUp animate-flip-up">0
-                </div>
-            </div>
-            <div class="mountbatten-pink-to-purple rounded-lg p-0.5 overflow-hidden min-w-[59px] text-center ease-in-out duration-[900ms] group-hover:-translate-y-1"
-                ref="onesNext">
-                <div class="animate__animated animate__fadeInUp animate-flip-up">0
-                </div>
-            </div>
-        </div> -->
 
         <!-- seeds -->
         <div class="pt-[54px]">

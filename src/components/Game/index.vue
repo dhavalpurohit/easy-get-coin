@@ -6,11 +6,11 @@ import Diceanime from '@/components/common/Diceanime.vue';
 import WinLost from "../common/WinLost.vue";
 import TabView from "../common/Tab/TabView.vue";
 const booleanList = reactive({
-    isFiveDice: false,
+    isFiveDice: true,
     isTwoDice: false,
-    isThreeDice: true
+    isThreeDice: false
 })
-const isNum = ref(true);
+const isNum = ref(false);
 
 const HistoryNum = [23.25, 23.25, 23.25, 23.25, 23.25];
 // const DiceArry = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6]

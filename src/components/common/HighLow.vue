@@ -5,7 +5,7 @@ import { ref } from 'vue'
 const currentBtn = ref('High');
 </script>
 <template>
-    <div class="flex items-center justify-center mb-[62px] gap-4 sm:gap-[42px]">
+    <div class="flex items-center md:flex-row-reverse md:items-end justify-center mb-[62px] md:mb-7 gap-4 sm:gap-[42px]">
         <ul
             class="flex flex-col gap-2 sm:gap-7 bg-black text-platinum px-3 sm:px-[25px] py-2 sm:py-[18px] rounded-xl sm:rounded-[26px] text-xs sm:text-[25px] font-bold">
             <li class="flex items-center justify-between">
@@ -33,7 +33,7 @@ const currentBtn = ref('High');
                 <span>X15.00</span>
             </li>
         </ul>
-        <div class="flex flex-col gap-6">
+        <div class="flex flex-col md:flex-row  gap-6">
             <Buttons @click="currentBtn = 'High'" :is-active="currentBtn === 'High'">
                 High
             </Buttons>

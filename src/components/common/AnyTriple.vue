@@ -9,8 +9,9 @@ const DiceArry = [Dice1, Dice2, Dice3]
 const currentBtn = ref('High')
 </script>
 <template>
-    <div class="flex flex-col gap-5 sm:gap-0 sm:flex-row items-center justify-between  mb-[80px]">
-        <div>
+    <div
+        class="flex flex-col gap-5 sm:gap-0 sm:flex-row items-center justify-between md:items-end md:justify-center md:gap-[100px]  mb-[80px] md:mb-5 md:max-w-[950px] md:mx-auto">
+        <div class="md:order-2 md:flex md:items-center md:gap-10">
             <div class="grid grid-cols-3 gap-x-2.5 gap-y-4">
                 <img v-for="(item, index) in DiceArry" :key="index" :src=item alt="dice" class="w-[45px] h-[45px]">
                 <img v-for="(item, index) in DiceArry" :key="index" :src=item alt="dice" class="w-[45px] h-[45px]">
@@ -36,7 +37,7 @@ const currentBtn = ref('High')
                 </div>
             </div>
         </div>
-        <div class="flex sm:flex-col gap-2 sm:gap-6">
+        <div class="flex sm:flex-col gap-2 sm:gap-6 md:order-1">
             <Buttons class="!px-4 sm:px-11" @click="currentBtn = 'High'" :is-active="currentBtn === 'High'">
                 High
             </Buttons>
@@ -47,7 +48,8 @@ const currentBtn = ref('High')
                 Low
             </Buttons>
         </div>
-        <div class="flex flex-col justify-center text-fandango pink-to-orange rounded-3xl px-6 h-[180px] sm:h-[264px]">
+        <div
+            class="flex order-3 flex-col justify-center text-fandango pink-to-orange rounded-3xl px-6 h-[180px] sm:h-[264px]">
             <span class="text-3xl sm:text-[40px] sm:leading-[normal] font-bold">ANY <br>TRIPLE</span>
             <span class="text-xl sm:text-2xl font-semibold sm:leading-7 mt-1">x30.00</span>
         </div>

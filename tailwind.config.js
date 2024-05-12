@@ -16,6 +16,7 @@ export default {
         electricPurple: '#BD34FE',
         mauve: '#E8B8FF',
         russian_violet: '#130635',
+        electric_purple: '#AC3CF3',
       },
       boxShadow: {
         'default': '12px 0px 19.8px rgba(0, 0, 0, 0.6)',
