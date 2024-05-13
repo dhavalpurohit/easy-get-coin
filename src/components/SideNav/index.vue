@@ -18,8 +18,8 @@ const MenuList = [
     { title: 'GAME', to: '/game' },
     { title: 'FUNDING DETAILS', to: '/funding-details' },
     { title: 'DEPOSIT AND WITHAWAL', to: '/deposit-and-withawal' },
-    { title: 'HELP CENTER', to: '/help-center' },
-    { title: 'CONTACT US', to: '/contact-us' },
+    { title: 'HELP CENTER', to: '/betdetails' },
+    { title: 'CONTACT US', to: '/verification' },
 ]
 
 const route = useRoute();
