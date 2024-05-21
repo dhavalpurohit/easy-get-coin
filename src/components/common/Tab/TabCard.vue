@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useRouter } from 'vue-router';
 import TabCardBg from '@/assets/images/bg_mybetsinfo 2.png';
 import BitCoinImage from '@/assets/images/bitcoin.png';
 import Profile from '@/assets/images/profile.png';
@@ -8,6 +9,7 @@ import PatternPuzzle from '@/assets/images/pattern-puzzle.png';
 defineProps<{
     tabTitle: String
 }>();
+const router = useRouter();
 </script>
 <template>
     <div v-if="tabTitle === 'bets'" :style="{ backgroundImage: `url(${TabCardBg})`, backgroundSize: '100% 100%' }"
@@ -20,7 +22,8 @@ defineProps<{
             <div class="flex flex-col items-center mr-[37px]">
                 <span class="font-semibold">Bet</span>
                 <span class="flex items-center gap-1.5">
-                    <img :src=BitCoinImage alt="bit-coin" class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
+                    <img :src=BitCoinImage alt="bit-coin" @click="router.push('/betdetails');"
+                        class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
                     <span>1</span>
                 </span>
             </div>
@@ -30,7 +33,8 @@ defineProps<{
             <div class="flex flex-col">
                 <span class="font-semibold">Payout</span>
                 <span class="flex items-center gap-1.5">
-                    <img :src=BitCoinImage alt="bit-coin" class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
+                    <img :src=BitCoinImage alt="bit-coin" @click="router.push('/betdetails');"
+                        class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
                     <span>2.5</span>
                 </span>
             </div>
@@ -51,7 +55,8 @@ defineProps<{
             <div class="flex flex-col items-center ml-auto mr-[37px]">
                 <span class="font-semibold">Bet</span>
                 <span class="flex items-center gap-1.5">
-                    <img :src=BitCoinImage alt="bit-coin" class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
+                    <img :src=BitCoinImage alt="bit-coin" @click="router.push('/betdetails');"
+                        class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
                     <span>1</span>
                 </span>
             </div>
@@ -62,7 +67,8 @@ defineProps<{
             <div class="flex flex-col">
                 <span class="font-semibold">Payout</span>
                 <span class="flex items-center gap-1.5">
-                    <img :src=BitCoinImage alt="bit-coin" class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
+                    <img :src=BitCoinImage alt="bit-coin" @click="router.push('/betdetails');"
+                        class="w-6 h-6 sm:w-[38px] sm:h-[38px]">
                     <span>2.5</span>
                 </span>
             </div>

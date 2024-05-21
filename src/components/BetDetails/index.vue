@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 import Profile from '../../assets/images/profile.png'
 import Buttons from '../common/Buttons.vue'
 import RollNumber from '../common/RollNumber.vue';
@@ -9,6 +10,7 @@ import DownArrow from '../icons/DownArrow.vue'
 import gameIcon from '../../assets/images/pattern-puzzle.png'
 import Copy from '../icons/Copy.vue'
 
+const router = useRouter();
 const isOpen = ref(false);
 const selectedWalletOption = ref({ id: 1, name: 'Fairness 1', img: gameIcon });
 const walletList = [
@@ -151,7 +153,7 @@ const selectWalletOption = (option: any) => {
                 <Copy class="stroke-white w-4 sm:w-[30px]" />
             </div>
         </div>
-        <button
+        <button @click="router.push('/verification');"
             class="block mt-[100px] uppercase text-white text-2xl sm:text-[45px] sm:leading-[54px] font-medium text-center pink-to-blue-gradient py-2.5 w-full max-w-[508px] rounded-full mx-auto">VERIFY</button>
     </div>
 </template>
