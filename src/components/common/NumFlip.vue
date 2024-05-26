@@ -19,7 +19,7 @@ defineProps<{
 }>();
 
 const { update } = useCounterStore();
-const counter = ref(50);
+const counter = ref(0);
 const isMultiple = ref(null);
 const incrementInterval = ref<number | null>(null);
 const isFocused = ref(false);
@@ -123,6 +123,36 @@ const handleKeyDown = (event: KeyboardEvent) => {
         }
     }
 };
+
+const validateInput = (event) => {
+    const value = event.target.innerText;
+    const numericValue = parseInt(value, 10);
+
+    if (isNaN(numericValue)) {
+        event.target.innerText = counter.value;
+    } else if (numericValue > 1000) {
+        counter.value = 1000;
+        event.target.innerText = 1000;
+    } else if (numericValue < 0) {
+        counter.value = 0;
+        event.target.innerText = 0;
+    } else {
+        counter.value = numericValue;
+    }
+};
+
+const validateKeyPress = (event: any) => {
+    if (!/^\d$/.test(event.key)) {
+        event.preventDefault();
+    }
+};
+
+const validatePaste = (event: any) => {
+    const paste = (event.clipboardData || window.clipboardData).getData('text');
+    if (!/^\d+$/.test(paste)) {
+        event.preventDefault();
+    }
+};
 </script>
 
 <template>
@@ -172,7 +202,8 @@ const handleKeyDown = (event: KeyboardEvent) => {
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Minus class="w-4 sm:w-8" />
             </button>
-            <div class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
+            <div contenteditable="true" @input="validateInput" @keypress="validateKeyPress" @paste="validatePaste"
+                class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
             <button @mousedown="increment(true)" @mouseup="stopIncrement" @touchstart="increment(true)"
                 @touchend="stopIncrement" @click="increment(false)" @focus="enableKeyboard" @blur="disableKeyboard"
                 tabindex="0"
