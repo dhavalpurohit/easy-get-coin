@@ -72,13 +72,11 @@ const stopDragging = () => {
 
 const enableKeyboard = () => {
     isFocused.value = true;
-    console.log(isFocused.value)
     window.addEventListener('keydown', handleKeyDown);
 };
 
 const disableKeyboard = () => {
     isFocused.value = false;
-    console.log(isFocused.value)
     window.removeEventListener('keydown', handleKeyDown);
 };
 
@@ -107,7 +105,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
 <template>
     <div class="flex items-center w-full space-x-4">
         <button @mousedown="decrement(true)" @mouseup="stopDecrement" @touchstart="decrement(true)"
-            @touchend="stopDecrement" @click="decrement(false)"
+            @touchend="stopDecrement" @click="decrement(false)" @focus="enableKeyboard" @blur="disableKeyboard" tabindex="0"
             class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
             <Minus class="w-4 sm:w-8" />
         </button>
@@ -130,7 +128,7 @@ const handleKeyDown = (event: KeyboardEvent) => {
             </div>
         </div>
         <button @mousedown="increment(true)" @mouseup="stopIncrement" @touchstart="increment(true)"
-            @touchend="stopIncrement" @click="increment(false)"
+            @touchend="stopIncrement" @click="increment(false)" @focus="enableKeyboard" @blur="disableKeyboard" tabindex="0"
             class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
             <Plush class="w-4 sm:w-8" />
         </button>

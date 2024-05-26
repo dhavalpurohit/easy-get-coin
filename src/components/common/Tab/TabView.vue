@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 import TabCard from './TabCard.vue';
 import tableLine from '../../../assets/images/table_line.png'
 import Profile from '../../../assets/images/profile.png'
@@ -12,6 +13,7 @@ const tableData = [
     { playerImg: Profile, player: 'Peter', currencyIcon: bitCoin, bet: '0.0002000', payout: '0.0002000', multiplier: 'x2', gameImg: gameIcon },
     { playerImg: Profile, player: 'Peter', currencyIcon: bitCoin, bet: '0.0002000', payout: '0.0002000', multiplier: 'x2', gameImg: gameIcon }
 ]
+const router = useRouter();
 </script>
 <template>
     <div>
@@ -77,14 +79,14 @@ const tableData = [
                                 </div>
                             </td>
                             <td class="px-[52px] py-5">
-                                <div class="flex items-center gap-3.5">
+                                <div class="flex items-center gap-3.5 cursor-pointer" @click="router.push('/betdetails');">
                                     <img :src="data.currencyIcon" alt="currency-image"
                                         class="w-[50px] h-[50px] rounded-full">
                                     <span>{{ data.bet }}</span>
                                 </div>
                             </td>
                             <td class="px-[52px] py-5">
-                                <div class="flex items-center gap-3.5">
+                                <div class="flex items-center gap-3.5 cursor-pointer" @click="router.push('/betdetails');">
                                     <img :src="data.currencyIcon" alt="currency-image"
                                         class="w-[50px] h-[50px] rounded-full">
                                     <span>{{ data.payout }}</span>
@@ -118,14 +120,14 @@ const tableData = [
                                 </div>
                             </td>
                             <td class="px-[52px] py-5">
-                                <div class="flex items-center gap-3.5">
+                                <div class="flex items-center gap-3.5 cursor-pointer" @click="router.push('/betdetails');">
                                     <img :src="data.currencyIcon" alt="currency-image"
                                         class="w-[50px] h-[50px] rounded-full">
                                     <span>{{ data.bet }}</span>
                                 </div>
                             </td>
                             <td class="px-[52px] py-5">
-                                <div class="flex items-center gap-3.5">
+                                <div class="flex items-center gap-3.5 cursor-pointer" @click="router.push('/betdetails');">
                                     <img :src="data.currencyIcon" alt="currency-image"
                                         class="w-[50px] h-[50px] rounded-full">
                                     <span>{{ data.payout }}</span>

@@ -22,6 +22,7 @@ const { update } = useCounterStore();
 const counter = ref(50);
 const isMultiple = ref(null);
 const incrementInterval = ref<number | null>(null);
+const isFocused = ref(false);
 
 const increment = (isContinuous = true) => {
     if (isContinuous) {
@@ -90,6 +91,38 @@ const cubeCall = () => {
     console.log("modalRef", modalRef.value)
     modalRef.value.rollDice()
 }
+
+const enableKeyboard = () => {
+    isFocused.value = true;
+    console.log(isFocused.value)
+    window.addEventListener('keydown', handleKeyDown);
+};
+
+const disableKeyboard = () => {
+    isFocused.value = false;
+    console.log(isFocused.value)
+    window.removeEventListener('keydown', handleKeyDown);
+};
+
+const handleKeyDown = (event: KeyboardEvent) => {
+    if (isFocused.value) {
+        switch (event.key) {
+            case 'ArrowLeft':
+                decrement(false);
+                break;
+            case 'ArrowRight':
+                increment(false);
+                break;
+            case '+':
+            case '=':
+                increment(false);
+                break;
+            case '-':
+                decrement(false);
+                break;
+        }
+    }
+};
 </script>
 
 <template>
@@ -131,16 +164,18 @@ const cubeCall = () => {
 
     <!-- counter plus & minus -->
     <div class="pt-[50px] pb-6">
-        <div
-            class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-1 sm:px-2.5 py-1 sm:py-2">
+        <div class="flex items-center justify-between max-w-[508px] w-full mx-auto bg-black rounded-30 px-1 sm:px-2.5 py-1 sm:py-2"
+            @focus="enableKeyboard" @blur="disableKeyboard" tabindex="0">
             <button @mousedown="decrement(true)" @mouseup="stopDecrement" @touchstart="decrement(true)"
-                @touchend="stopDecrement" @click="decrement(false)"
+                @touchend="stopDecrement" @click="decrement(false)" @focus="enableKeyboard" @blur="disableKeyboard"
+                tabindex="0"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Minus class="w-4 sm:w-8" />
             </button>
             <div class="text-white font-medium text-xl sm:text-4xl">{{ counter }}</div>
             <button @mousedown="increment(true)" @mouseup="stopIncrement" @touchstart="increment(true)"
-                @touchend="stopIncrement" @click="increment(false)"
+                @touchend="stopIncrement" @click="increment(false)" @focus="enableKeyboard" @blur="disableKeyboard"
+                tabindex="0"
                 class="min-w-6 w-6 h-6 sm:min-w-12 sm:w-12 sm:h-12 rounded-full bg-veronicaLight flex justify-center items-center text-white">
                 <Plush class="w-4 sm:w-8" />
             </button>
