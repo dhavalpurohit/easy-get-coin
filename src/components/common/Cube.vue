@@ -26,45 +26,6 @@ const cube2 = ref<HTMLElement | null>(null);
 const selectedNum = ref(0);
 const selectedNum2 = ref(0);
 
-// const rollDice = (): void => {
-//     selectedNum.value = 0
-//     selectedNum2.value = 0
-
-//     if (cube.value && cube2.value) {
-//         cube.value.style.animation = 'animate 1s linear';
-//         cube2.value.style.animation = 'animate 1s linear';
-
-//         const randomAngle = Math.floor(Math.random() * 6) + 1;
-//         const randomAngle2 = Math.floor(Math.random() * 6) + 1;
-
-//         cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-//         cube.value.style.transition = '1s linear';
-
-//         cube2.value.style.transform = `rotateX(${angleArray2[randomAngle2][0]}deg) rotateY(${angleArray2[randomAngle2][1]}deg) rotateZ(${angleArray2[randomAngle2][2]}deg)`;
-//         cube2.value.style.transition = '1s linear';
-
-//         cube.value.addEventListener('animationend', () => {
-//             if (cube.value) {
-//                 cube.value.style.animation = '';
-//             }
-//         });
-
-//         cube2.value.addEventListener('animationend', () => {
-//             if (cube2.value) {
-//                 cube2.value.style.animation = '';
-//             }
-//         });
-
-//         setTimeout(() => {
-//             selectedNum.value = randomAngle
-//             selectedNum2.value = randomAngle2
-//         }, 1000);
-
-//     }
-
-// }
-
-
 const initializeCubes = () => {
     if (cube.value && cube2.value) {
         cube.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
@@ -79,8 +40,6 @@ const rollDice = (): void => {
     if (cube.value && cube2.value) {
         cube.value.style.animation = 'none';
         cube2.value.style.animation = 'none';
-        // cube.value.style.animation = 'animate 1s linear';
-        // cube2.value.style.animation = 'animate 1s linear';
         cube.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
         cube2.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
 
@@ -92,45 +51,21 @@ const rollDice = (): void => {
 
         setTimeout(() => {
             if (cube.value && cube2.value) {
-                animationReset.value = 2000
-                cube.value.style.animation = 'animate 2s linear';
+                animationReset.value = 1000
+                cube.value.style.animation = 'animate 1s linear';
                 cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-                cube.value.style.transition = '2s linear';
-                cube2.value.style.animation = 'animate 2s linear';
+                cube.value.style.transition = '1s linear';
+                cube2.value.style.animation = 'animate 1s linear';
                 cube2.value.style.transform = `rotateX(${angleArray2[randomAngle2][0]}deg) rotateY(${angleArray2[randomAngle2][1]}deg) rotateZ(${angleArray2[randomAngle2][2]}deg)`;
-                cube2.value.style.transition = '2s linear';
+                cube2.value.style.transition = '1s linear';
 
             }
             setTimeout(() => {
                 selectedNum.value = randomAngle
                 selectedNum2.value = randomAngle2
-            }, 2000);
+            }, 1000);
         }, animationReset.value);
-        // cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-        // cube.value.style.transition = '1s linear';
-
-        // cube2.value.style.transform = `rotateX(${angleArray2[randomAngle2][0]}deg) rotateY(${angleArray2[randomAngle2][1]}deg) rotateZ(${angleArray2[randomAngle2][2]}deg)`;
-        // cube2.value.style.transition = '1s linear';
-
-        // cube.value.addEventListener('animationend', () => {
-        //     if (cube.value) {
-        //         cube.value.style.animation = '';
-        //     }
-        // });
-
-        // cube2.value.addEventListener('animationend', () => {
-        //     if (cube2.value) {
-        //         cube2.value.style.animation = '';
-        //     }
-        // });
-
-        // setTimeout(() => {
-        //     selectedNum.value = randomAngle
-        //     selectedNum2.value = randomAngle2
-        // }, 1000);
-
     }
-
 }
 window.addEventListener('load', initializeCubes);
 defineExpose({
@@ -139,6 +74,7 @@ defineExpose({
 </script>
 <template>
     <div class="containers h-[200px] sm:h-[300px] md:h-[200px]">
+        {{ selectedNum }} {{ selectedNum2 }}
         <div class="cube" ref="cube">
             <!-- Your cube faces here -->
             <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
@@ -190,9 +126,6 @@ defineExpose({
                 <span></span>
                 <span></span>
                 <span></span>
-                <!-- <pre class="firstPre"><span></span>   <span></span>    <span></span></pre>
-                <br>
-                <pre class="secondPre"><span></span>   <span></span>    <span></span></pre> -->
             </div>
             <div class="top" :style="{ background: selectedNum2 === 2 ? '#E8B8FF' : '' }">
                 <span></span>
@@ -232,7 +165,8 @@ defineExpose({
 .containers .cube {
     @apply w-[65px] h-[65px] absolute inset-0 m-auto cursor-pointer;
     transform-style: preserve-3d;
-    transform: rotateX(135deg) rotateY(-217deg) rotateZ(-88deg);
+    transition: transform 5s;
+    /* transform: rotateX(135deg) rotateY(-217deg) rotateZ(-88deg); */
 }
 
 .containers .cube div {
