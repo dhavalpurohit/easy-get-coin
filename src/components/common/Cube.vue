@@ -1,432 +1,214 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 
-const angleArray: number[][] = [
-    [0, 0, 0],
-    [-310, -362, -38],
-    [-400, -320, -2],
-    [135, -217, -88],
-    [-224, -317, 5],
-    [-47, -219, -81],
-    [-133, -360, -53]
-];
-const angleArray2: number[][] = [
-    [0, 0, 0],
-    [-310, -362, -38],
-    [-400, -320, -2],
-    [135, -217, -88],
-    [-224, -317, 5],
-    [-47, -219, -81],
-    [-133, -360, -53]
-];
-
+const angleX = ref(0);
+const angleY = ref(0);
+const delay = ref(0);
+const canRoll = ref(true);
+const rollMax = ref(50);
+const result = ref(1);
 const cube = ref<HTMLElement | null>(null);
-const cube2 = ref<HTMLElement | null>(null);
-
 const selectedNum = ref(0);
-const selectedNum2 = ref(0);
 
-const initializeCubes = () => {
-    if (cube.value && cube2.value) {
-        cube.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-        cube2.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-    }
+function getRandomInt(max: number): number {
+    return Math.floor(Math.random() * max);
 }
-const animationReset = ref(0)
-const rollDice = (): void => {
+
+function rollDice() {
     selectedNum.value = 0
-    selectedNum2.value = 0
+    canRoll.value = false;
+    const xTurn = 4 + getRandomInt(rollMax.value);
+    const yTurn = 4 + getRandomInt(rollMax.value);
 
-    if (cube.value && cube2.value) {
-        cube.value.style.animation = 'none';
-        cube2.value.style.animation = 'none';
-        cube.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-        cube2.value.style.transform = `rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
-
-        void cube.value.offsetHeight;
-        void cube2.value.offsetHeight
-
-        const randomAngle = Math.floor(Math.random() * 6) + 1;
-        const randomAngle2 = Math.floor(Math.random() * 6) + 1;
-
-        setTimeout(() => {
-            if (cube.value && cube2.value) {
-                animationReset.value = 1000
-                cube.value.style.animation = 'animate 1s linear';
-                cube.value.style.transform = `rotateX(${angleArray[randomAngle][0]}deg) rotateY(${angleArray[randomAngle][1]}deg) rotateZ(${angleArray[randomAngle][2]}deg)`;
-                cube.value.style.transition = '1s linear';
-                cube2.value.style.animation = 'animate 1s linear';
-                cube2.value.style.transform = `rotateX(${angleArray2[randomAngle2][0]}deg) rotateY(${angleArray2[randomAngle2][1]}deg) rotateZ(${angleArray2[randomAngle2][2]}deg)`;
-                cube2.value.style.transition = '1s linear';
-
-            }
-            setTimeout(() => {
-                selectedNum.value = randomAngle
-                selectedNum2.value = randomAngle2
-            }, 1000);
-        }, animationReset.value);
+    delay.value = Math.max(xTurn, yTurn) * 50;
+    angleX.value += 90 * xTurn;
+    angleY.value += 90 * yTurn;
+    if (angleX.value % 180) {
+        getRandomInt(3) > 1 && (angleX.value += 90)
     }
+    if (cube.value) {
+        cube.value.style.transform = "rotateX(" + angleX.value + "deg) rotateY(" + angleY.value + "deg)"
+        cube.value.style.transitionDuration = delay.value + 'ms'
+    }
+
+    let x = angleX.value % 360,
+        y = angleY.value % 360
+    if (x === 0 || x === 180) {
+        switch ((x + y) % 360) {
+            case 0: result.value = 1
+                break
+            case 90: result.value = 5
+                break
+            case 180: result.value = 6
+                break
+            case 270: result.value = 2
+                break
+            default:
+                console.error(123456);
+        }
+    }
+    else if (x === 90) {
+        result.value = 4
+    }
+    else if (x === 270) {
+        result.value = 3
+    }
+    setTimeout(() => { canRoll.value = true, selectedNum.value = result.value }, delay.value)
+
+    console.log('result:', result.value)
+    return (result)
 }
-window.addEventListener('load', initializeCubes);
+
 defineExpose({
     rollDice
 })
 </script>
+
 <template>
-    <div class="containers h-[200px] sm:h-[300px] md:h-[200px]">
-        {{ selectedNum }} {{ selectedNum2 }}
-        <div class="cube" ref="cube">
-            <!-- Your cube faces here -->
-            <div class="front" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
-                <span></span>
-            </div>
-            <div class="back" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
-                <!-- i use pre tag to align dots -->
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="top" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-            </div>
-            <div class=" left" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-            <div class="right" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="bottom" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-        <div class="cube !left-[200px]" ref="cube2">
-            <!-- Your cube faces here -->
-            <div class="front" :style="{ background: selectedNum2 === 1 ? '#E8B8FF' : '' }">
-                <span></span>
-            </div>
-            <div class="back" :style="{ background: selectedNum2 === 6 ? '#E8B8FF' : '' }">
-                <!-- i use pre tag to align dots -->
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="top" :style="{ background: selectedNum2 === 2 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-            </div>
-            <div class=" left" :style="{ background: selectedNum2 === 3 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-
-            </div>
-            <div class="right" :style="{ background: selectedNum2 === 5 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="bottom" :style="{ background: selectedNum2 === 4 ? '#E8B8FF' : '' }">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
+    <div class="parents">
+        <div class="dice-container">
+            <div ref="dice" class="dice"
+                :style="{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg)`, transitionDuration: delay + 'ms' }">
+                <div class="face" data-id="1" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
+                    <div class="point point-middle point-center"></div>
+                </div>
+                <div class="face" data-id="2" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
+                    <div class="point point-top point-right"></div>
+                    <div class="point point-bottom point-left"></div>
+                </div>
+                <div class="face" data-id="6" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
+                    <div class="point point-top point-right"></div>
+                    <div class="point point-top point-left"></div>
+                    <div class="point point-middle point-right"></div>
+                    <div class="point point-middle point-left"></div>
+                    <div class="point point-bottom point-right"></div>
+                    <div class="point point-bottom point-left"></div>
+                </div>
+                <div class="face" data-id="5" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
+                    <div class="point point-top point-right"></div>
+                    <div class="point point-top point-left"></div>
+                    <div class="point point-middle point-center"></div>
+                    <div class="point point-bottom point-right"></div>
+                    <div class="point point-bottom point-left"></div>
+                </div>
+                <div class="face" data-id="3" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
+                    <div class="point point-top point-right"></div>
+                    <div class="point point-middle point-center"></div>
+                    <div class="point point-bottom point-left"></div>
+                </div>
+                <div class="face" data-id="4" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
+                    <div class="point point-top point-right"></div>
+                    <div class="point point-top point-left"></div>
+                    <div class="point point-bottom point-right"></div>
+                    <div class="point point-bottom point-left"></div>
+                </div>
             </div>
         </div>
+        <!-- <button class="roll-btn" @click="rollDice">ROLL</button> -->
     </div>
 </template>
-<style scoped>
-.containers {
+
+
+<style>
+.parents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 20px;
+}
+
+.dice-container {
     perspective: 1000px;
     perspective-origin: 50% 50%;
-    width: 100%;
-    /* font-family: 'fontawesome';
-    height: 100vh; */
+    width: 90px;
+    aspect-ratio: 1;
+    cursor: pointer;
+    border-radius: 10px;
 }
 
-.containers .cube {
-    @apply w-[65px] h-[65px] absolute inset-0 m-auto cursor-pointer;
+.dice {
+    position: relative;
+    width: 90px;
+    aspect-ratio: 1;
+    border-radius: 10px;
     transform-style: preserve-3d;
-    transition: transform 5s;
-    /* transform: rotateX(135deg) rotateY(-217deg) rotateZ(-88deg); */
+    transform-origin: 50% 50% calc(90px * -0.5);
+    transform: rotateX(180deg) rotateY(180deg);
+    transition: transform 2s ease-in-out;
 }
 
-.containers .cube div {
+.face {
     position: absolute;
-    box-sizing: border-box;
-    padding: 1px;
-    height: 100%;
-    width: 100%;
-    border: 1px solid #24006D;
-    color: #fff;
-    border-radius: 5px;
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
+    width: 90px;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    transform: rotateX(0deg) rotateY(180deg);
+    transform-origin: 50% 50% calc(90px * -0.5);
 }
 
-.containers .cube div span {
-    height: 12px;
+.face:nth-child(1) {
+    transform: rotateY(0deg);
+}
+
+.face:nth-child(2) {
+    transform: rotateY(90deg);
+}
+
+.face:nth-child(3) {
+    transform: rotateY(180deg);
+}
+
+.face:nth-child(4) {
+    transform: rotateY(270deg);
+}
+
+.face:nth-child(5) {
+    transform: rotateX(90deg);
+}
+
+.face:nth-child(6) {
+    transform: rotateX(270deg);
+}
+
+.point {
+    position: absolute;
     width: 12px;
-    border-radius: 50%;
-    background: #24006D;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background: #24006d;
 }
 
-.containers .cube .front {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform: translateZ(-34px);
-    left: 0;
+.point-top {
+    top: 2vmin;
 }
 
-.containers .cube .back {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform: translateZ(-100px) rotateY(180deg);
-    right: 2px;
+.point-middle {
+    top: calc((90px - 12px) / 2);
 }
 
-.containers .cube .right {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform-origin: top right;
-    transform: rotateY(-270deg) translateX(100px);
-    left: 2px;
+.point-bottom {
+    bottom: 2vmin;
 }
 
-.containers .cube .left {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform-origin: center left;
-    transform: rotateY(270deg) translateX(-100px);
-    right: 2px;
+.point-left {
+    left: 2vmin;
 }
 
-.containers .cube .top {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform-origin: top center;
-    transform: rotateX(-270deg) translateY(-100px);
-    bottom: 2px;
+.point-center {
+    left: calc((90px - 12px) / 2);
 }
 
-.containers .cube .bottom {
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    transform-origin: bottom center;
-    transform: rotateX(270deg) translateY(100px);
-    top: 2px;
+.point-right {
+    right: 2vmin;
 }
 
-/*DOT ALIGNMENT */
-.containers .cube .front span,
-.containers .cube .left span:nth-child(1),
-.containers .cube .right span:nth-child(1) {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.containers .cube .top span:nth-child(1),
-.containers .cube .left span:nth-child(2),
-.containers .cube .right span:nth-child(2),
-.containers .cube .bottom span:nth-child(1) {
-    position: absolute;
-    top: 35px;
-    left: 35px;
-}
-
-.containers .cube .top span:nth-child(2),
-.containers .cube .left span:nth-child(3),
-.containers .cube .right span:nth-child(3),
-.containers .cube .bottom span:nth-child(2) {
-    position: absolute;
-    bottom: 35px;
-    right: 35px;
-}
-
-.containers .cube .right span:nth-child(4),
-.containers .cube .bottom span:nth-child(3) {
-    position: absolute;
-    top: 35px;
-    right: 35px;
-}
-
-.containers .cube .right span:nth-child(5),
-.containers .cube .bottom span:nth-child(4) {
-    position: absolute;
-    bottom: 35px;
-    left: 35px;
-}
-
-/* .containers .cube .back pre {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: #24006D;
-    margin: 0;
-} */
-
-.containers .cube .back span {
-    height: 12px;
-    width: 12px;
-    border-radius: 50%;
-    background: #24006D;
-}
-
-.containers .cube .back span:nth-child(1) {
-    position: absolute;
-    bottom: 40px;
-    left: 35px;
-}
-
-.containers .cube .back span:nth-child(2) {
-    position: absolute;
-    bottom: 25px;
-    left: 35px;
-}
-
-.containers .cube .back span:nth-child(3) {
-    position: absolute;
-    bottom: 10px;
-    left: 35px;
-}
-
-.containers .cube .back span:nth-child(4) {
-    position: absolute;
-    top: 11px;
-    left: 20px;
-}
-
-.containers .cube .back span:nth-child(5) {
-    position: absolute;
-    bottom: 25px;
-    left: 20px;
-}
-
-
-.containers .cube .back span:nth-child(6) {
-    position: absolute;
-    bottom: 10px;
-    left: 20px;
-}
-
-.containers .cube .back .firstPre {
-    position: absolute;
-    top: 45px;
-    left: 26px;
-}
-
-.containers .cube .back .secondPre {
-    position: absolute;
-    bottom: 45px;
-    right: 26px;
-}
-
-/* media query */
-@media (max-width:640px) {
-    .containers .cube {
-        @apply w-[40px] h-[40px];
-    }
-
-    .containers .cube div span {
-        width: 6px !important;
-        height: 6px !important;
-    }
-
-    .containers .cube .front {
-        transform: translateZ(-60px);
-    }
-
-    .containers .cube .top span:nth-child(1),
-    .containers .cube .left span:nth-child(2),
-    .containers .cube .right span:nth-child(2),
-    .containers .cube .bottom span:nth-child(1) {
-        top: 6px;
-        left: 6px;
-    }
-
-    .containers .cube .top span:nth-child(2),
-    .containers .cube .left span:nth-child(3),
-    .containers .cube .right span:nth-child(3),
-    .containers .cube .bottom span:nth-child(2) {
-        top: 25px;
-        left: 25px;
-    }
-
-    .containers .cube .right span:nth-child(4),
-    .containers .cube .bottom span:nth-child(3) {
-        top: 25px;
-        right: 25px;
-    }
-
-    .containers .cube .right span:nth-child(5),
-    .containers .cube .bottom span:nth-child(4) {
-        bottom: 24px;
-        left: 24px;
-    }
-
-    .containers .cube .back span:nth-child(6) {
-        bottom: 8px;
-        left: 8px;
-    }
-
-    .containers .cube .back span:nth-child(3) {
-        bottom: 8px;
-        left: 19px;
-    }
-
-    .containers .cube .back span:nth-child(4) {
-        top: 12px;
-        left: 6px;
-    }
-
-    .containers .cube .back span:nth-child(5) {
-        bottom: 19px;
-        left: 17px;
-    }
-
-    .containers .cube .back span:nth-child(1) {
-        bottom: 18px;
-        left: 28px;
-    }
-
-    .containers .cube .back span:nth-child(2) {
-        bottom: 8px;
-        left: 29px;
-    }
-
-}
-
-@keyframes animate {
-    25% {
-        transform: rotateX(45deg) rotateY(65deg) rotateZ(35deg);
-        top: -0%;
-    }
-
-    50% {
-        transform: rotateX(145deg) rotateY(165deg) rotateZ(135deg);
-        top: -30%;
-    }
-
-    75% {
-        transform: rotateX(276deg) rotateY(256deg) rotateZ(246deg);
-        top: -45%;
-    }
-
-    100% {
-        transform: rotateX(376deg) rotateY(356deg) rotateZ(346deg);
-        top: -60%;
-    }
+.roll-btn {
+    padding: 2vmin 2vmin;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bolder;
 }
 </style>
