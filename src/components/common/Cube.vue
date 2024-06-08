@@ -3,6 +3,7 @@ import { ref } from 'vue';
 
 const angleX = ref(0);
 const angleY = ref(0);
+const angleZ = ref(45);
 const delay = ref(0);
 const canRoll = ref(true);
 const rollMax = ref(50);
@@ -56,6 +57,16 @@ function rollDice() {
     setTimeout(() => { canRoll.value = true, selectedNum.value = result.value }, delay.value)
 
     console.log('result:', result.value)
+
+    // rotate Z
+    switch (result.value) {
+        case 0: angleZ.value = 45
+            break
+        case 1: angleZ.value = 45
+            break
+        default:
+            angleZ.value = 0;
+    }
     return (result)
 }
 
@@ -68,15 +79,15 @@ defineExpose({
     <div class="parents">
         <div class="dice-container">
             <div ref="dice" class="dice"
-                :style="{ transform: `rotateX(${angleX}deg) rotateY(${angleY}deg)`, transitionDuration: delay + 'ms' }">
-                <div class="face" data-id="1" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
+                :style="{ transform: `rotateX(${angleX + 50}deg) rotateY(${angleY}deg) rotateZ(${angleZ}deg)`, transitionDuration: delay + 'ms' }">
+                <div class="face face-1" data-id="1" :style="{ background: selectedNum === 1 ? '#E8B8FF' : '' }">
                     <div class="point point-middle point-center"></div>
                 </div>
-                <div class="face" data-id="2" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
+                <div class="face face-2" data-id="2" :style="{ background: selectedNum === 2 ? '#E8B8FF' : '' }">
                     <div class="point point-top point-right"></div>
                     <div class="point point-bottom point-left"></div>
                 </div>
-                <div class="face" data-id="6" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
+                <div class="face face-6" data-id="6" :style="{ background: selectedNum === 6 ? '#E8B8FF' : '' }">
                     <div class="point point-top point-right"></div>
                     <div class="point point-top point-left"></div>
                     <div class="point point-middle point-right"></div>
@@ -84,19 +95,19 @@ defineExpose({
                     <div class="point point-bottom point-right"></div>
                     <div class="point point-bottom point-left"></div>
                 </div>
-                <div class="face" data-id="5" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
+                <div class="face face-5" data-id="5" :style="{ background: selectedNum === 5 ? '#E8B8FF' : '' }">
                     <div class="point point-top point-right"></div>
                     <div class="point point-top point-left"></div>
                     <div class="point point-middle point-center"></div>
                     <div class="point point-bottom point-right"></div>
                     <div class="point point-bottom point-left"></div>
                 </div>
-                <div class="face" data-id="3" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
+                <div class="face face-3" data-id="3" :style="{ background: selectedNum === 3 ? '#E8B8FF' : '' }">
                     <div class="point point-top point-right"></div>
                     <div class="point point-middle point-center"></div>
                     <div class="point point-bottom point-left"></div>
                 </div>
-                <div class="face" data-id="4" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
+                <div class="face face-4" data-id="4" :style="{ background: selectedNum === 4 ? '#E8B8FF' : '' }">
                     <div class="point point-top point-right"></div>
                     <div class="point point-top point-left"></div>
                     <div class="point point-bottom point-right"></div>
@@ -111,65 +122,104 @@ defineExpose({
 
 <style>
 .parents {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
     padding-top: 20px;
 }
 
 .dice-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
     perspective: 1000px;
     perspective-origin: 50% 50%;
-    width: 90px;
+    width: 100%;
     aspect-ratio: 1;
-    cursor: pointer;
-    border-radius: 10px;
+    height: 100px;
 }
 
 .dice {
+    /* @apply w-[65px] h-[65px] relative m-auto cursor-pointer; */
     position: relative;
-    width: 90px;
-    aspect-ratio: 1;
-    border-radius: 10px;
+    width: 65px;
+    height: 65px;
+    margin: auto;
     transform-style: preserve-3d;
-    transform-origin: 50% 50% calc(90px * -0.5);
+    aspect-ratio: 1;
+    transform-origin: 50% 50% calc(65px * -0.5);
     transform: rotateX(180deg) rotateY(180deg);
     transition: transform 2s ease-in-out;
 }
 
 .face {
     position: absolute;
-    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
-    width: 90px;
-    aspect-ratio: 1;
-    border-radius: 10px;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+    border: 1px solid #24006D;
+    color: #fff;
+    border-radius: 5px;
     transform: rotateX(0deg) rotateY(180deg);
-    transform-origin: 50% 50% calc(90px * -0.5);
+    transform-origin: 50% 50% calc(65px * -0.5);
+    background: linear-gradient(90deg, #9440C7 0%, #6B38EC 48.23%, #77A3FA 100%);
 }
 
-.face:nth-child(1) {
+/* .face:nth-child(1) {
     transform: rotateY(0deg);
+    top: -4px;
 }
 
 .face:nth-child(2) {
     transform: rotateY(90deg);
+    left: 4px;
 }
 
 .face:nth-child(3) {
     transform: rotateY(180deg);
+    top: 4px;
 }
 
 .face:nth-child(4) {
     transform: rotateY(270deg);
+    left: -4px;
 }
 
 .face:nth-child(5) {
     transform: rotateX(90deg);
+    top: -4px;
 }
 
 .face:nth-child(6) {
     transform: rotateX(270deg);
+    top: 4px;
+} */
+.face-1 {
+    transform: rotateY(0deg);
+    left: 0;
+}
+
+.face-6 {
+    transform: rotateY(180deg);
+    right: 0;
+}
+
+.face-5 {
+    transform: rotateY(270deg);
+    left: 0;
+}
+
+.face-3 {
+    transform: rotateX(90deg);
+    right: 0;
+}
+
+.face-2 {
+    transform: rotateY(90deg);
+    bottom: 0;
+}
+
+.face-4 {
+    transform: rotateX(270deg);
+    top: 0;
 }
 
 .point {
@@ -181,31 +231,31 @@ defineExpose({
 }
 
 .point-top {
-    top: 2vmin;
+    top: 10px;
 }
 
 .point-middle {
-    top: calc((90px - 12px) / 2);
+    top: calc((65px - 12px) / 2);
 }
 
 .point-bottom {
-    bottom: 2vmin;
+    bottom: 10px;
 }
 
 .point-left {
-    left: 2vmin;
+    left: 10px;
 }
 
 .point-center {
-    left: calc((90px - 12px) / 2);
+    left: calc((65px - 12px) / 2);
 }
 
 .point-right {
-    right: 2vmin;
+    right: 10px;
 }
 
 .roll-btn {
-    padding: 2vmin 2vmin;
+    padding: 10px 10px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
